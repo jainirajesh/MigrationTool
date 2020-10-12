@@ -124,7 +124,7 @@
     <div style="overflow-x: auto; width: 100%">
         <asp:GridView ID="gvExcelFile" runat="server" CssClass="mydatagrid" OnPageIndexChanging="gvExcelFile_PageIndexChanging" PagerStyle-CssClass="pager" OnSorting="gvExcelFile_Sorting"
             OnRowDataBound="OnRowDataBound" OnRowEditing="OnRowEditing" HeaderStyle-CssClass="header1"  EmptyDataText="No records has been added."
-            AutoGenerateColumns="true" RowStyle-CssClass="rows" AllowPaging="True" AllowSorting="true" PageIndex="10" Width="100%">
+            AutoGenerateColumns="true" RowStyle-CssClass="rows" AllowPaging="True" AllowSorting="true" PageSize="20" Width="100%">
             <%--  <Columns>
             <asp:BoundField ItemStyle-Width="150px" DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
             <asp:BoundField ItemStyle-Width="150px" DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
