@@ -1,0 +1,227 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="MigrationTool.Site1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>VMware Migration Tool</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header2 {
+            padding: 0;
+            text-align: center;
+            background-color: dimgray;
+            color: white;
+            font-size: 30px;
+        }
+
+        .header1 {
+            background-color: #6a6a6a;
+            font-family: Arial;
+            color: White;
+            height: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: black;
+        }
+
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 12px 14px;
+                text-decoration: none;
+            }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 12px 14px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .mydatagrid {
+            width: 100%;
+            border: solid 2px black;
+            min-width: 100%;
+        }
+
+
+        .rows {
+            background-color: #fff;
+            font-family: Arial;
+            font-size: 12px;
+            color: #000;
+            min-height: 15px;
+            text-align: left;
+        }
+
+            .rows:hover {
+                background-color: darkgray;
+                color: #000;
+            }
+
+        .mydatagrid a /** FOR THE PAGING ICONS **/ {
+            background-color: Transparent;
+            padding: 3px 3px 3px 3px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .mydatagrid a:hover /** FOR THE PAGING ICONS HOVER STYLES**/ {
+                background-color: #fff;
+                color: #000;
+            }
+
+        .mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/ {
+            padding: 5px 5px 5px 5px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .pager {
+            background-color: darkgray;
+            font-family: Arial;
+            color: White;
+            height: 15px;
+            text-align: left;
+        }
+
+        .mydatagrid td {
+            padding: 5px;
+        }
+
+        .mydatagrid th {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div runat="server" id="divLogo1" visible="false">
+            <table width="100%">
+                <tr>
+                    <td width="10%" style="text-align: left; height: 50px; word-wrap: unset">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/vm-logo.png" />
+                    </td>
+            </table>
+        </div>
+
+        <div runat="server" id="divMenu">
+            <table width="100%" style="background-color: black">
+                <tr>
+                    <td width="3%" style="text-align: left; height: 50px; word-wrap: unset">
+                        <asp:Image ID="Image1" runat="server" Height="50px" ImageUrl="~/Images/MenuLogo.jpg" />
+                    </td>
+                    <td width="75%" style="text-align: center">
+
+                        <div class="navbar">
+                            <a href="Dashboard.aspx">Dashboard</a>
+                            <div class="dropdown" runat="server" id="divAdmin1">
+                                <button class="dropbtn">
+                                    Admin 
+                                <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="DBCreation.aspx">Create Project</a>
+                                    <a href="Upload.aspx">Upload Data</a>
+                                    <a href="Users.aspx">Users</a>
+                                    <a href="CreateUser.aspx">Create User</a>
+                                </div>
+                            </div>
+                            <a href="#Projects">Projects</a>
+                            <div class="dropdown" runat="server" id="divAssets">
+                                <button class="dropbtn">
+                                    Assets 
+                                <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="Hosts.aspx">Hosts</a>
+                                    <a href="Applications.aspx">Applications</a>
+                                    <a href="Storage.aspx" runat="server" id="mnServers">Storage</a>
+                                    <a href="#">Databases</a>
+                                    <a href="#">Relations</a>
+                                </div>
+                            </div>
+                           <div class="dropdown">
+                                <button class="dropbtn">
+                                    Reports 
+                                <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="Templates.aspx">Download Templates</a>                                   
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td style="text-align: right;">
+                        <div style="width: 100%; background-color: black; float: right; font-size: 18px; color: white; text-align: right; text-decoration: none;">
+                            <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="Wheat"></asp:Label>
+                            <br />
+                            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="White" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
