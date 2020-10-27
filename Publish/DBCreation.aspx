@@ -88,12 +88,12 @@
                     &nbsp;</td>
             </tr>
             <tr>
-                <td>Enter the Project name to be created :</td>
+                <td>Enter new Project Name :</td>
                 <td>
                     <asp:TextBox ID="DatabaseBox1" runat="server"></asp:TextBox></td>
             </tr>
             <tr>
-                <td>Insert Data into Table :</td>
+                <td>Include Master Data :</td>
                 <td>
                     <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox></td>
 
@@ -106,7 +106,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <asp:Button ID="Button1" runat="server" Text="Create Database" OnClick="Button1_Click"></asp:Button></td>
+                    <asp:Button ID="Button1" runat="server" Text="Create Project" OnClick="Button1_Click"></asp:Button></td>
             </tr>
             <tr>
                 <td colspan="2">

@@ -72,7 +72,7 @@
             </tr>
             <tr>
                 <td style="text-align: right;">
-                    <asp:Button ID="SignUp" runat="server" Text="SignUp" OnClick="SignUp_Click" /></td>
+                    <asp:Button ID="SignUp" runat="server" Text="Create User" OnClick="SignUp_Click" /></td>
                 <td style="text-align: left;">
                     <asp:Button ID="btnClear" runat="server" Text="Clear" CausesValidation="false" OnClick="btnClear_Click" /></td>
             </tr>

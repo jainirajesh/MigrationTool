@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/Javascript" language="javascript">
         function confirm_meth() {
-            if (confirm("Are you sure to upload the data to database?") == true) {
+            if (confirm("Are you sure to upload the data to project database?") == true) {
                 return true;
             }
             else {
@@ -93,13 +93,12 @@
                     <asp:ListItem>Applications</asp:ListItem>
                     <asp:ListItem>Storage</asp:ListItem>
                     <asp:ListItem>Databases</asp:ListItem>
-                    <asp:ListItem>Relations</asp:ListItem>
+                    <asp:ListItem>Relationships</asp:ListItem>
                     <asp:ListItem>Users</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
             <td style="text-align: left;">&nbsp;</td>
         </tr>
-
         <tr>
             <td style="text-align: left;">&nbsp;</td>
             <td style="text-align: left;">&nbsp;</td>

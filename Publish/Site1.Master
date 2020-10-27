@@ -1,7 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="MigrationTool.Site1" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <!DOCTYPE html>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html>
 <head runat="server">
     <title>VMware Migration Tool</title>
@@ -12,18 +13,26 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        h1 {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
         .header2 {
             padding: 0;
             text-align: center;
-            background-color: dimgray;
-            color: white;
+            color: #565656;
             font-size: 30px;
+            font-family:'Bookman Old Style', cursive, sans-serif;
+        }
+
+        hr.MenuLine {
+            border-top: 1px solid red;
         }
 
         .header1 {
             background-color: #6a6a6a;
             font-family: Arial;
-            color: White;
+            color: #565656;
             height: 20px;
             text-align: center;
             font-size: 14px;
@@ -31,15 +40,15 @@
 
         .navbar {
             overflow: hidden;
-            background-color: black;
+            background-color: white;
         }
 
             .navbar a {
                 float: left;
                 font-size: 16px;
-                color: white;
+                color: #565656;
                 text-align: center;
-                padding: 12px 14px;
+                padding: 10px 12px;
                 text-decoration: none;
             }
 
@@ -52,8 +61,8 @@
                 font-size: 16px;
                 border: none;
                 outline: none;
-                color: white;
-                padding: 12px 14px;
+                color: #565656;
+                padding: 10px 12px;
                 background-color: inherit;
                 font-family: inherit;
                 margin: 0;
@@ -137,7 +146,7 @@
         .pager {
             background-color: darkgray;
             font-family: Arial;
-            color: White;
+            color: #565656;
             height: 15px;
             text-align: left;
         }
@@ -153,75 +162,82 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div runat="server" id="divLogo1" visible="false">
-            <table width="100%">
-                <tr>
-                    <td width="10%" style="text-align: left; height: 50px; word-wrap: unset">
-                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/vm-logo.png" />
-                    </td>
-            </table>
-        </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="update" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div runat="server" id="divLogo1" visible="false">
+                    <table width="100%">
+                        <tr>
+                            <td width="10%" style="text-align: left; height: 50px; word-wrap: unset">
+                                <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/vm-logo.png" />
+                            </td>
+                    </table>
+                </div>
 
-        <div runat="server" id="divMenu">
-            <table width="100%" style="background-color: black">
-                <tr>
-                    <td width="3%" style="text-align: left; height: 50px; word-wrap: unset">
-                        <asp:Image ID="Image1" runat="server" Height="50px" ImageUrl="~/Images/MenuLogo.jpg" />
-                    </td>
-                    <td width="75%" style="text-align: center">
+                <div runat="server" id="divMenu">
+                    <table width="100%" style="background-color: white;">
+                        <tr>
+                            <td width="3%" style="text-align: left; word-wrap: unset">
+                                <asp:ImageButton ID="Image1" runat="server" Height="50px" ImageUrl="~/Images/MenuLogo.jpg" CausesValidation="false" OnClientClick="document.location.href = 'dashboard.aspx'; return false" />
+                            </td>
+                            <td width="75%" style="text-align: center">
+                                <div class="navbar">
+                                    <a href="Dashboard.aspx">Dashboard</a>
+                                    <div class="dropdown" runat="server" id="divAdmin1">
+                                        <button class="dropbtn" disabled>
+                                            Admin 
+                                <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="DBCreation.aspx">Create Project</a>
+                                            <a href="Upload.aspx">Upload Data</a>
+                                            <a href="Users.aspx">Users</a>
+                                            <a href="CreateUser.aspx">Create User</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown" runat="server" id="divAssets">
+                                        <button class="dropbtn" disabled>
+                                            Assets 
+                                <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="Hosts.aspx">Hosts</a>
+                                            <a href="Applications.aspx">Applications</a>
+                                            <a href="Storage.aspx" runat="server" id="mnServers">Storage</a>
+                                            <a href="Databases.aspx">Databases</a>
+                                            <a href="Relationships.aspx">Relationships</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="dropbtn" disabled>
+                                            Reports 
+                                <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="Templates.aspx">Download Templates</a>
+                                        </div>
+                                    </div>
+                                    <a href="Preferences.aspx">Preferences</a>
+                                </div>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="#565656"></asp:Label>
+                                |
+                                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="#565656" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
+                                <br />
+                                <br />
+                                </dropdownlist><asp:Label ID="Label1" runat="server" Text="Project : "></asp:Label>
+                                <asp:DropDownList ID="drpProject" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpProject_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
 
-                        <div class="navbar">
-                            <a href="Dashboard.aspx">Dashboard</a>
-                            <div class="dropdown" runat="server" id="divAdmin1">
-                                <button class="dropbtn">
-                                    Admin 
-                                <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
-                                    <a href="DBCreation.aspx">Create Project</a>
-                                    <a href="Upload.aspx">Upload Data</a>
-                                    <a href="Users.aspx">Users</a>
-                                    <a href="CreateUser.aspx">Create User</a>
-                                </div>
-                            </div>
-                            <a href="#Projects">Projects</a>
-                            <div class="dropdown" runat="server" id="divAssets">
-                                <button class="dropbtn">
-                                    Assets 
-                                <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
-                                    <a href="Hosts.aspx">Hosts</a>
-                                    <a href="Applications.aspx">Applications</a>
-                                    <a href="Storage.aspx" runat="server" id="mnServers">Storage</a>
-                                    <a href="#">Databases</a>
-                                    <a href="#">Relations</a>
-                                </div>
-                            </div>
-                           <div class="dropdown">
-                                <button class="dropbtn">
-                                    Reports 
-                                <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
-                                    <a href="Templates.aspx">Download Templates</a>                                   
-                                </div>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td style="text-align: right;">
-                        <div style="width: 100%; background-color: black; float: right; font-size: 18px; color: white; text-align: right; text-decoration: none;">
-                            <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="Wheat"></asp:Label>
-                            <br />
-                            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="White" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+                    </table>
+                    <hr class="Menuline">
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

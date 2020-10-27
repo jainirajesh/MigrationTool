@@ -92,8 +92,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+
     <div align="center">
         <table style="width: 100%; height: 100%; text-align: center; vertical-align: middle;" class="centered">
             <tr>
@@ -127,7 +126,7 @@
             BackgroundCssClass="Background">
         </ajax:ModalPopupExtender>
 
-        <asp:Panel ID="Panl1" runat="server" CssClass="Popup" align="center" Width="550px" Height="350px" style="display:none;">
+        <asp:Panel ID="Panl1" runat="server" CssClass="Popup" align="center" Width="550px" Height="350px" Style="display: none;">
             <table style="text-align: left; width: 525px;" cellpadding="5" cellspacing="5">
                 <tr>
                     <td colspan="2">
@@ -192,18 +191,23 @@
             CancelControlID="btnSignUpCancel" BackgroundCssClass="Background">
         </ajax:ModalPopupExtender>
 
-        <asp:Panel ID="pnlSignUp" runat="server" CssClass="Popup" align="center" Width="550px" Height="550px" style="display:none;">
-            <table align="center" cellspacing="5" cellpadding="5" width="525px">
+        <asp:Panel ID="pnlSignUp" runat="server" CssClass="Popup" align="center" Width="550px" Height="550px">
+            <table align="center" cellspacing="5" cellpadding="5" width="545px" style="text-align: left;">
                 <tr>
+                    <td width="40px">&nbsp;</td>
                     <td colspan="2">
-                        <div class="header2">SignUp</div>
+                        <div class="header2">
+                            SignUp
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>First Name : </td>
                     <td>
                         <asp:TextBox ID="FirstName" runat="server"></asp:TextBox>
@@ -211,6 +215,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>Last Name : </td>
                     <td>
                         <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
@@ -218,6 +223,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>User Name : </td>
                     <td class="auto-style4">
                         <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
@@ -225,6 +231,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>Password :</td>
                     <td class="auto-style4">
                         <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
@@ -233,6 +240,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>Email :</td>
                     <td class="auto-style4">
                         <asp:TextBox ID="Email" runat="server"></asp:TextBox>
@@ -241,6 +249,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td>User Role : </td>
                     <td class="auto-style4">
                         <asp:DropDownList ID="UserRole" runat="server" DataValueField="Admin,User" DataTextField="values" Width="165px">
@@ -251,15 +260,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
                     <td></td>
                 </tr>
                 <tr>
+                    <td style="text-align: right;">&nbsp;</td>
                     <td style="text-align: right;">
-                        <asp:Button ID="btnSignUp" runat="server" Text="SignUp" OnClick="btnSignUp_Click" /></td>
+                        <asp:Button ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" Text="SignUp" />
+                    </td>
                     <td style="text-align: left;">
-                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" OnClick="btnSignUpCancel_Click" /></td>
+                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" OnClick="btnSignUpCancel_Click" CausesValidation="false"/></td>
                 </tr>
                 <tr>
+                    <td style="text-align: center;">&nbsp;</td>
                     <td colspan="2" style="text-align: center;">
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                         <asp:Label ID="Label4" runat="server"></asp:Label>

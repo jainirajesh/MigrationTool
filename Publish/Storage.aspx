@@ -15,7 +15,7 @@
                 <asp:Button Text="Search" ID="btnSearch" runat="server" OnClick="Search" /></td>
         </tr>
     </table>
-    <div style="overflow-x: auto; width: 100%; padding-top: 20px;">
+    <div style="overflow-x: auto; width: 100%; padding-top: 10px;">
         <asp:GridView ID="gvExcelFile" runat="server" CssClass="mydatagrid" OnPageIndexChanging="gvExcelFile_PageIndexChanging" PagerStyle-CssClass="pager" OnSorting="gvExcelFile_Sorting"
             OnRowDataBound="OnRowDataBound" OnRowEditing="OnRowEditing" HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
             AutoGenerateColumns="false" RowStyle-CssClass="rows" AllowPaging="True" AllowSorting="true" PageSize="20" Width="90%">
