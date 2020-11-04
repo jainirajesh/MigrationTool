@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Databases.aspx.cs" Inherits="MigrationTool.Databases" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script type="text/Javascript" language="javascript">
+    <script type="text/Javascript" language="javascript">
         function confirm_meth() {
             if (confirm("Are you sure to commit the data to project database?") == true) {
                 return true;
@@ -36,69 +36,74 @@
                         <asp:ImageButton runat="server" ImageUrl="~/Images/Cancel.png" Height="25px" Width="25px" OnClick="OnCancel" />
                     </EditItemTemplate>
 
-<HeaderStyle Width="60px"></HeaderStyle>
+                    <HeaderStyle Width="60px"></HeaderStyle>
 
-<ItemStyle Width="60px"></ItemStyle>
+                    <ItemStyle Width="60px"></ItemStyle>
                 </asp:TemplateField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Type" HeaderText="DB Type" SortExpression="DB_Type" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Server_Name" HeaderText="Server Name" SortExpression="Server_Name" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="175px" DataField="DB_Version" HeaderText="DB Version" SortExpression="DB_Version" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Type" HeaderText="DB Type" SortExpression="DB_Type" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="175px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="150px" DataField="In_Scope" HeaderText="In Scope" SortExpression="In_Scope" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="175px" DataField="DB_Version" HeaderText="DB Version" SortExpression="DB_Version" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="150px"></ItemStyle>
+                    <ItemStyle Width="175px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Out_of_Scope_Justification" HeaderText="Justification" SortExpression="Out_of_Scope_Justification" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="150px" DataField="In_Scope" HeaderText="In Scope" SortExpression="In_Scope" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="150px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Technical_Contact" HeaderText="Technical Contact" SortExpression="Technical_Contact" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Out_of_Scope_Justification" HeaderText="Justification" SortExpression="Out_of_Scope_Justification" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Instance" HeaderText="DB Instance" SortExpression="DB_Instance" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Technical_Contact" HeaderText="Technical Contact" SortExpression="Technical_Contact" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Server_Name" HeaderText="DB Server Name" SortExpression="DB_Server_Name" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Instance" HeaderText="DB Instance" SortExpression="DB_Instance" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Size_GB" HeaderText="DB Size GB" SortExpression="DB_Size_GB" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Server_Name" HeaderText="DB Server Name" SortExpression="DB_Server_Name" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Discovery_Source" HeaderText="Discovery Source" SortExpression="Discovery_Source" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="DB_Size_GB" HeaderText="DB Size GB" SortExpression="DB_Size_GB" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Environment" HeaderText="Environment" SortExpression="Environment" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Discovery_Source" HeaderText="Discovery Source" SortExpression="Discovery_Source" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="Comments" HeaderText="Comments" SortExpression="Comments" ControlStyle-Width="90%" >
-<ControlStyle Width="90%"></ControlStyle>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Environment" HeaderText="Environment" SortExpression="Environment" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
 
-<ItemStyle Width="120px"></ItemStyle>
+                    <ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Comments" HeaderText="Comments" SortExpression="Comments" ControlStyle-Width="90%">
+                    <ControlStyle Width="90%"></ControlStyle>
+
+                    <ItemStyle Width="120px"></ItemStyle>
                 </asp:BoundField>
             </Columns>
             <FooterStyle BackColor="White" ForeColor="#000066" />
@@ -118,12 +123,12 @@
         <tr>
             <td>
                 <asp:Label ID="Label1" runat="server" Font-Bold="True"></asp:Label>
-                <asp:Button ID="btnCommit" runat="server" Text="Commit Changes" OnClick="btnCommit_Click" OnClientClick=" return confirm_meth()"  CssClass="button7" Style="background-color: crimson"/>
-                <asp:Button ID="btnRevert" runat="server" Text="Revert Changes" OnClick="btnRevert_Click"  CssClass="button7" Style="background-color: #2979FF"/>
+                <asp:Button ID="btnCommit" runat="server" Text="Commit Changes" OnClick="btnCommit_Click" OnClientClick=" return confirm_meth()" CssClass="button7" Style="background-color: crimson" />
+                <asp:Button ID="btnRevert" runat="server" Text="Revert Changes" OnClick="btnRevert_Click" CssClass="button7" Style="background-color: #2979FF" />
             </td>
             <td style="text-align: right;">
-                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000"/>
-                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000"/>
+                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
+                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
             </td>
         </tr>
     </table>

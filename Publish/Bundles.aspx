@@ -28,12 +28,10 @@
         <tr>
             <td colspan="3">&nbsp;</td>
         </tr>
-
         <tr>
             <td colspan="3">
                 <asp:GridView ID="grdBundles" runat="server" Width="100%" AllowSorting="true" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                    HeaderStyle-CssClass="header1" EmptyDataText="No records has been added." OnSorting="grdBundles_Sorting"
-                    RowStyle-CssClass="rows" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+                    HeaderStyle-CssClass="header1" OnSorting="grdBundles_Sorting" RowStyle-CssClass="rows" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                     <Columns>
                         <asp:BoundField DataField="Application" HeaderText="Application" SortExpression="Application"></asp:BoundField>
                         <asp:BoundField DataField="Server" HeaderText="Server" SortExpression="Server"></asp:BoundField>
@@ -56,6 +54,5 @@
                 </asp:GridView>
             </td>
         </tr>
-
     </table>
 </asp:Content>

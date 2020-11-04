@@ -52,7 +52,6 @@
             transform: translate(-50%, -50%);
         }*/
 
-
         fieldset {
             font-family: sans-serif;
             border: 5px solid #1F497D;
@@ -92,7 +91,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div align="center">
         <table style="width: 100%; height: 100%; text-align: center; vertical-align: middle;" class="centered">
             <tr>
@@ -135,7 +133,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">User Name
+                    <td colspan="2">Username
                     <br />
                         <asp:TextBox ID="txtResetUsername" CssClass="textbox1" runat="server" ValidationGroup="create"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="create" runat="server" ControlToValidate="txtResetUsername" ErrorMessage="*" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -184,46 +182,52 @@
         <asp:Panel ID="pnlSignUp" runat="server" CssClass="Popup" align="center" Width="550px" Height="600px" Style="display: none;">
             <table align="center" cellspacing="1" cellpadding="1" width="545px" style="text-align: left;">
                 <tr>
-                    
+
                     <td colspan="3">
                         <div class="header2">
                             SignUp
                         </div>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">First Name :<br />
                         <asp:TextBox ID="FirstName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="FirstName" ErrorMessage="First Name is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">Last Name :<br />
                         <asp:TextBox ID="LastName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="LastName" ErrorMessage="LastName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">User Name :<br />
                         <asp:TextBox ID="UserName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="UserName" ErrorMessage="UserName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">Password :<br />
                         <asp:TextBox ID="Password" runat="server" CssClass="textbox1" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="Password" ErrorMessage="Password is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Password" ErrorMessage="Password length must be between 7 to 10 characters" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9'@&amp;#.\s]{7,10}$">*</asp:RegularExpressionValidator>--%>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">Email :<br />
                         <asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="Email" ErrorMessage="Email is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Invalid Email Format" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
-                <tr><td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="3">User Role :<br />
                         <asp:DropDownList ID="UserRole" runat="server" CssClass="textbox1" DataTextField="values" DataValueField="Admin,User">
                             <asp:ListItem Selected="True">User</asp:ListItem>
@@ -233,14 +237,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right;">&nbsp;</td>
-                    <td style="text-align: right;">
+                    <td colspan="3" style="text-align: center;">
                         <asp:Button ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" Text="SignUp" CssClass="button7" Style="background-color: #2979FF" />
-                    </td>
-                    <td style="text-align: left;">
-                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" OnClick="btnSignUpCancel_Click" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /></td>
+                        <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
+                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /></td>
                 </tr>
-                <tr style="display:none;">
+                <tr>
                     <td style="text-align: center;">&nbsp;</td>
                     <td colspan="2" style="text-align: center;">
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" Visible="false" />
