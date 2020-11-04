@@ -5,10 +5,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html>
 <head runat="server">
+    <%-- <link href="wwwCSS.css" rel="stylesheet" />--%>
     <title>VMware Migration Tool</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
+        .button7 {
+            display: inline-block;
+            padding: 0.3em 1.3em;
+            margin: 0 0.1em 0.1em 0;
+            border-radius: 0.2em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-size: 16px;
+            color: #FFFFFF;
+            background-color: #3369ff;
+            box-shadow: inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+            text-align: center;
+            position: relative;
+        }
+
+            .button7:active {
+                box-shadow: inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+            }
+
+            .button7:hover {
+                text-shadow: 0 0 2em rgba(255,255,255,1);
+                color: #FFFFFF;
+                border-color: #FFFFFF;
+                background-color: #FFFFFF;
+            }
+
+        @media all and (max-width:30em) {
+              .button7 {
+                display: block;
+                margin: 0.4em auto;
+            }
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -22,7 +56,7 @@
             text-align: center;
             color: #565656;
             font-size: 30px;
-            font-family:'Bookman Old Style', cursive, sans-serif;
+            font-family: 'Bookman Old Style', cursive, sans-serif;
         }
 
         hr.MenuLine {
@@ -69,7 +103,8 @@
             }
 
             .navbar a:hover, .dropdown:hover .dropbtn {
-                background-color: red;
+                background-color: darkgray;
+                color:white;
             }
 
         .dropdown-content {
@@ -92,6 +127,7 @@
 
                 .dropdown-content a:hover {
                     background-color: #ddd;
+                    color:black;
                 }
 
         .dropdown:hover .dropdown-content {
@@ -158,10 +194,20 @@
         .mydatagrid th {
             padding: 5px;
         }
+
+        .textbox1 {
+            width: 90%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="background-image: url(Images/)">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="update" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -206,6 +252,7 @@
                                             <a href="Storage.aspx" runat="server" id="mnServers">Storage</a>
                                             <a href="Databases.aspx">Databases</a>
                                             <a href="Relationships.aspx">Relationships</a>
+                                            <a href="Bundles.aspx">Bundles</a>
                                         </div>
                                     </div>
                                     <div class="dropdown">

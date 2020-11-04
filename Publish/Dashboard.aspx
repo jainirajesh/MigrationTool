@@ -10,7 +10,7 @@
             background-image: url(Images/HeaderBg.JPG);
             color: white;
             cursor: pointer;
-            padding: 8px;
+            padding: 6px;
             width: 100%;
             border: none;
             text-align: left;
@@ -24,7 +24,7 @@
             }
 
         .content {
-            padding: 0 18px;
+            padding: 0 16px;
             display: none;
             overflow: hidden;
             background-color: #f1f1f1;
@@ -34,6 +34,42 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align: center;">
         <table width="100%">
+            <tr>
+                <td height="200px;" colspan="2">
+                    <asp:Chart ID="Chart2" runat="server">
+                        <Series>
+                            <asp:Series Name="Series1"></asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:Chart ID="Chart3" runat="server">
+                        <Series>
+                            <asp:Series Name="Series1"></asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>               
+                    <asp:Chart ID="Chart1" runat="server">
+                        <Series>
+                            <asp:Series Name="Series1"></asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:Chart ID="Chart4" runat="server">
+                        <Series>
+                            <asp:Series Name="Series1"></asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                </td>
+            </tr>
             <tr>
                 <td width="50%" style="vertical-align: top;">
                     <button type="button" class="collapsible">Hosts</button>
@@ -74,6 +110,9 @@
                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                             </asp:GridView>
+                            <div style="width: 100%; text-align:right;">
+                                <asp:HyperLink ID="lnkHosts" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Hosts.aspx">View all Hosts..</asp:HyperLink>
+                            </div>
                         </p>
                     </div>
                     <br />
@@ -115,12 +154,15 @@
                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                             </asp:GridView>
+                             <div style="width: 100%; text-align:right;">
+                                <asp:HyperLink ID="lnkStorage" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Storage.aspx">View all Storages..</asp:HyperLink>
+                            </div>
                         </p>
                     </div>
                 </td>
                 <td style="vertical-align: top;">
                     <button type="button" class="collapsible">Applications</button>
-                    <div class="content" style="display: block; height: 180px;">
+                    <div class="content" style="display: block; height:180px;">
                         <p>
                             <asp:GridView ID="Applications" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
                                 AutoGenerateColumns="False" RowStyle-CssClass="rows" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
@@ -160,6 +202,9 @@
                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                             </asp:GridView>
+                             <div style="width: 100%; text-align:right;">
+                                <asp:HyperLink ID="lnkApplications" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Applications.aspx">View all Applications..</asp:HyperLink>
+                            </div>
                         </p>
                     </div>
                     <br />
@@ -200,48 +245,14 @@
                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                             </asp:GridView>
+                             <div style="width: 100%; text-align:right;">
+                                <asp:HyperLink ID="lnkDatabases" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Databases.aspx">View all Databases..</asp:HyperLink>
+                            </div>
                         </p>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Chart ID="Chart2" runat="server">
-                        <Series>
-                            <asp:Series Name="Series1"></asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                    <asp:Chart ID="Chart3" runat="server">
-                        <Series>
-                            <asp:Series Name="Series1"></asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                </td>
-                <td>
-                    <asp:Chart ID="Chart1" runat="server">
-                        <Series>
-                            <asp:Series Name="Series1"></asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                     <asp:Chart ID="Chart4" runat="server">
-                        <Series>
-                            <asp:Series Name="Series1"></asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                </td>
-            </tr>
+            
             <tr>
                 <td></td>
                 <td></td>

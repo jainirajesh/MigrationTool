@@ -93,25 +93,63 @@
     <div style="overflow-x: auto; width: 100%">
         <asp:GridView ID="gvExcelFile" runat="server" CssClass="mydatagrid" OnPageIndexChanging="gvExcelFile_PageIndexChanging" PagerStyle-CssClass="pager" OnSorting="gvExcelFile_Sorting"
             OnRowDataBound="OnRowDataBound" OnRowEditing="OnRowEditing" HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
-            AutoGenerateColumns="false" RowStyle-CssClass="rows" AllowPaging="True" AllowSorting="true" PageSize="100" Width="90%">
+            AutoGenerateColumns="False" RowStyle-CssClass="rows" AllowPaging="True" AllowSorting="True" PageSize="100" Width="90%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
             <Columns>
                 <asp:TemplateField ItemStyle-Width="60px" HeaderStyle-Width="60px" HeaderText="">
                     <EditItemTemplate>
                         <asp:ImageButton runat="server" ImageUrl="~/Images/Update.png" Height="25px" Width="25px" OnClick="OnUpdate" />
                         <asp:ImageButton runat="server" ImageUrl="~/Images/Cancel.png" Height="25px" Width="25px" OnClick="OnCancel" />
                     </EditItemTemplate>
+
+<HeaderStyle Width="60px"></HeaderStyle>
+
+<ItemStyle Width="60px"></ItemStyle>
                 </asp:TemplateField>
-                <asp:BoundField ItemStyle-Width="120px" DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="120px" DataField="LastName" HeaderText="Last Name" SortExpression="LastName" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="175px" DataField="UserName" HeaderText="User Name" SortExpression="UserName" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="120px" DataField="Password" HeaderText="Password" SortExpression="Password" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="150px" DataField="Email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="120px" DataField="UserRole" HeaderText="User Role" SortExpression="UserRole" ControlStyle-Width="90%" />
-                <asp:BoundField ItemStyle-Width="120px" DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate" ControlStyle-Width="90%" />
+                <asp:BoundField ItemStyle-Width="120px" DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="120px" DataField="LastName" HeaderText="Last Name" SortExpression="LastName" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="175px" DataField="UserName" HeaderText="User Name" SortExpression="UserName" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="175px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="120px" DataField="Password" HeaderText="Password" SortExpression="Password" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="150px" DataField="Email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="150px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="120px" DataField="UserRole" HeaderText="User Role" SortExpression="UserRole" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField ItemStyle-Width="120px" DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate" ControlStyle-Width="90%" >
+<ControlStyle Width="90%"></ControlStyle>
+
+<ItemStyle Width="120px"></ItemStyle>
+                </asp:BoundField>
             </Columns>
-            <HeaderStyle CssClass="header1" Wrap="False"></HeaderStyle>
-            <PagerStyle CssClass="pager"></PagerStyle>
-            <RowStyle CssClass="rows" Wrap="False"></RowStyle>
+            <FooterStyle BackColor="White" ForeColor="#000066" />
+            <HeaderStyle CssClass="header1" Wrap="False" BackColor="#006699" Font-Bold="True" ForeColor="White"></HeaderStyle>
+            <PagerStyle CssClass="pager" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"></PagerStyle>
+            <RowStyle CssClass="rows" Wrap="False" ForeColor="#000066"></RowStyle>
+            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#007DBB" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#00547E" />
         </asp:GridView>
         <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
     </div>
@@ -121,8 +159,8 @@
                 <asp:Label ID="Label1" runat="server" Font-Bold="True"></asp:Label>
             </td>
             <td style="text-align: right;">
-                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" />
-                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" />
+                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000"/>
+                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000"/>
             </td>
         </tr>
     </table>

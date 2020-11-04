@@ -110,9 +110,10 @@
                             Width="280px" TextMode="Password" CssClass="input"></asp:TextBox>
                         <br />
                         <br />
-                        <asp:Button ID="btnsubmit" runat="server" Text="Login"
-                            Width="150px" OnClick="btnsubmit_Click" CssClass="button" /><br />
-                        <asp:LinkButton runat="server" ID="lnkFSignUp" Text="SignUp" ForeColor="Black" Font-Size="Smaller" Font-Italic="true"></asp:LinkButton>&nbsp;
+                        <asp:Button ID="btnsubmit" runat="server" Text="Login" Width="150px" Height="40px"
+                            OnClick="btnsubmit_Click" Style="background-color: #4CAF50" CssClass="button7" />
+                        <asp:Button Width="150px" runat="server" ID="btnSign" Height="40px" Text="Register" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /><br />
+                        <asp:LinkButton runat="server" Visible="false" ID="lnkFSignUp" Text="SignUp" ForeColor="Black" Font-Size="Smaller" Font-Italic="true"></asp:LinkButton>&nbsp;
                         <asp:LinkButton runat="server" ID="lnkForgotPassword" Text="Forgot Password?" ForeColor="Black" Font-Size="Smaller" Font-Italic="true"></asp:LinkButton>
                         <br />
                     </fieldset>
@@ -126,49 +127,38 @@
             BackgroundCssClass="Background">
         </ajax:ModalPopupExtender>
 
-        <asp:Panel ID="Panl1" runat="server" CssClass="Popup" align="center" Width="550px" Height="350px" Style="display: none;">
-            <table style="text-align: left; width: 525px;" cellpadding="5" cellspacing="5">
+        <asp:Panel ID="Panl1" runat="server" CssClass="Popup" align="center" Width="550px" Height="450px" Style="display: none;">
+            <table style="text-align: left; width: 525px;" cellpadding="1" cellspacing="1">
                 <tr>
                     <td colspan="2">
                         <div class="header2">Change Password</div>
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>User Name
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtResetUsername" runat="server" Font-Size="14px" ValidationGroup="create"></asp:TextBox>
+                    <td colspan="2">User Name
+                    <br />
+                        <asp:TextBox ID="txtResetUsername" CssClass="textbox1" runat="server" ValidationGroup="create"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="create" runat="server" ControlToValidate="txtResetUsername" ErrorMessage="*" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                     </td>
                 </tr>
                 <tr>
-                    <td>Email
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtResetEmail" runat="server" Font-Size="14px" ValidationGroup="create"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="create" runat="server" ControlToValidate="txtResetEmail" ErrorMessage="*" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <td colspan="2">Email<br />
+                        <asp:TextBox ID="txtResetEmail" runat="server" CssClass="textbox1" ValidationGroup="create"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtResetEmail" ErrorMessage="*" ForeColor="Red" ValidationGroup="create">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td>New Password
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtResetPassword" runat="server" Font-Size="14px" ValidationGroup="create"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="create" runat="server" ControlToValidate="txtResetPassword" ErrorMessage="*" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <td colspan="2">New Password<br />
+                        <asp:TextBox ID="txtResetPassword" runat="server" CssClass="textbox1" ValidationGroup="create"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtResetPassword" ErrorMessage="*" ForeColor="Red" ValidationGroup="create">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td>Confirm New Password
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtResetConfirmPass" runat="server" Font-Size="14px" ValidationGroup="create"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ValidationGroup="create" runat="server" ControlToValidate="txtResetConfirmPass" ErrorMessage="*" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        <asp:CompareValidator ID="comparevalida" runat="server" ValidationGroup="create" ControlToValidate="txtResetConfirmPass" ControlToCompare="txtResetPassword" ErrorMessage="*" ForeColor="Red"></asp:CompareValidator>
+                    <td colspan="2">Confirm New Password<br />
+                        <asp:TextBox ID="txtResetConfirmPass" runat="server" CssClass="textbox1" ValidationGroup="create"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtResetConfirmPass" ErrorMessage="*" ForeColor="Red" ValidationGroup="create">*</asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="comparevalida" runat="server" ControlToCompare="txtResetPassword" ControlToValidate="txtResetConfirmPass" ErrorMessage="*" ForeColor="Red" ValidationGroup="create"></asp:CompareValidator>
                     </td>
                 </tr>
                 <tr>
@@ -180,79 +170,62 @@
                         <asp:Label runat="server" ID="lblErrPassword"></asp:Label></td>
                 </tr>
             </table>
-            <asp:Button ID="btnSubmitReset" runat="server" ValidationGroup="create" CausesValidation="true" Text="Submit" OnClick="btnSubmitReset_Click" />
+            <asp:Button ID="btnSubmitReset" runat="server" ValidationGroup="create" CausesValidation="true" Text="Submit" CssClass="button7" Style="background-color: #2979FF" OnClick="btnSubmitReset_Click" />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Text="Close" OnClick="Button2_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Close" OnClick="Button2_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
         </asp:Panel>
 
         <!-- ModalPopupExtender -->
 
-        <ajax:ModalPopupExtender ID="mdlSignUp" runat="server" PopupControlID="pnlSignUp" TargetControlID="lnkFSignUp"
+        <ajax:ModalPopupExtender ID="mdlSignUp" runat="server" PopupControlID="pnlSignUp" TargetControlID="btnSign"
             CancelControlID="btnSignUpCancel" BackgroundCssClass="Background">
         </ajax:ModalPopupExtender>
 
-        <asp:Panel ID="pnlSignUp" runat="server" CssClass="Popup" align="center" Width="550px" Height="550px">
-            <table align="center" cellspacing="5" cellpadding="5" width="545px" style="text-align: left;">
+        <asp:Panel ID="pnlSignUp" runat="server" CssClass="Popup" align="center" Width="550px" Height="600px" Style="display: none;">
+            <table align="center" cellspacing="1" cellpadding="1" width="545px" style="text-align: left;">
                 <tr>
-                    <td width="40px">&nbsp;</td>
-                    <td colspan="2">
+                    
+                    <td colspan="3">
                         <div class="header2">
                             SignUp
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>First Name : </td>
-                    <td>
-                        <asp:TextBox ID="FirstName" runat="server"></asp:TextBox>
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">First Name :<br />
+                        <asp:TextBox ID="FirstName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="FirstName" ErrorMessage="First Name is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>Last Name : </td>
-                    <td>
-                        <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">Last Name :<br />
+                        <asp:TextBox ID="LastName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="LastName" ErrorMessage="LastName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>User Name : </td>
-                    <td class="auto-style4">
-                        <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">User Name :<br />
+                        <asp:TextBox ID="UserName" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="UserName" ErrorMessage="UserName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>Password :</td>
-                    <td class="auto-style4">
-                        <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">Password :<br />
+                        <asp:TextBox ID="Password" runat="server" CssClass="textbox1" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="Password" ErrorMessage="Password is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password length must be between 7 to 10 characters" ValidationExpression="^[a-zA-Z0-9'@&#.\s]{7,10}$" ControlToValidate="Password" ForeColor="Red">*</asp:RegularExpressionValidator>
+                        <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Password" ErrorMessage="Password length must be between 7 to 10 characters" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9'@&amp;#.\s]{7,10}$">*</asp:RegularExpressionValidator>--%>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>Email :</td>
-                    <td class="auto-style4">
-                        <asp:TextBox ID="Email" runat="server"></asp:TextBox>
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">Email :<br />
+                        <asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="Email" ErrorMessage="Email is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email Format" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Email" ForeColor="Red">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Invalid Email Format" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>User Role : </td>
-                    <td class="auto-style4">
-                        <asp:DropDownList ID="UserRole" runat="server" DataValueField="Admin,User" DataTextField="values" Width="165px">
+                <tr><td>&nbsp;</td>
+                    <td colspan="3">User Role :<br />
+                        <asp:DropDownList ID="UserRole" runat="server" CssClass="textbox1" DataTextField="values" DataValueField="Admin,User">
                             <asp:ListItem Selected="True">User</asp:ListItem>
                             <asp:ListItem Value="Admin"></asp:ListItem>
                         </asp:DropDownList>
@@ -260,21 +233,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td style="text-align: right;">&nbsp;</td>
                     <td style="text-align: right;">
-                        <asp:Button ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" Text="SignUp" />
+                        <asp:Button ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" Text="SignUp" CssClass="button7" Style="background-color: #2979FF" />
                     </td>
                     <td style="text-align: left;">
-                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" OnClick="btnSignUpCancel_Click" CausesValidation="false"/></td>
+                        <asp:Button ID="btnSignUpCancel" runat="server" Text="Cancel" OnClick="btnSignUpCancel_Click" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /></td>
                 </tr>
-                <tr>
+                <tr style="display:none;">
                     <td style="text-align: center;">&nbsp;</td>
                     <td colspan="2" style="text-align: center;">
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" Visible="false" />
                         <asp:Label ID="Label4" runat="server"></asp:Label>
                     </td>
                 </tr>
