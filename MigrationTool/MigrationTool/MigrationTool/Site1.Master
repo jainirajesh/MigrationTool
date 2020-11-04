@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="MigrationTool.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>VMware Migration Tool</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            height: 27px;
+        }
+
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header {
+            overflow: hidden;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div runat="server" id="divMenu">
+            <table width="100%" class="header">
+                <tr>
+                    <td width="18%" style="text-align: left; word-wrap: unset">
+                        <%-- <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/vm-logo.png" />--%>
+                        <div style="background-color: #333; float: left; font-size: 18px; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">
+                            VMware Migration Tool
+                        </div>
+                    </td>
+                    <td width="70%" style="text-align: center">
+                        <div class="navbar">
+
+                            <a href="#home">Home</a>
+                            <a href="#news">News</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    Dropdown 
+                            <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="20%" style="text-align: right;">
+                        <div style="background-color: #333; float: left; font-size: 18px; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">
+
+                            <table width="100%" height="100%">
+                                <tr>
+                                    <td style="text-align: right; vertical-align: text-top;" class="auto-style1">
+                                        <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="Wheat"></asp:Label>
+                                        <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="White" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </form>
+</body>
+</html>
