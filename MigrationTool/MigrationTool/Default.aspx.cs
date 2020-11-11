@@ -17,7 +17,7 @@ namespace MigrationTool
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString);
                 conn.Open();
-                string checkuser = "select count(*) from UserDetails";
+                string checkuser = "select count(*) from Users";
                 SqlCommand cmd = new SqlCommand(checkuser, conn);
                 int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 

@@ -20,19 +20,19 @@ namespace MigrationTool
         protected void Page_Load(object sender, EventArgs e)
         {
             DropDownList drpProject = (DropDownList)Master.FindControl("drpProject");
-            if (Session["drpProject"] == null)
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString());
-            }
-            else if (drpProject.Items.Count > 1)
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, drpProject.SelectedItem.Text);
-            }
-            else
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, Session["drpProject"].ToString());
-            }
-            constr = Session["constr"].ToString();
+            //if (Session["drpProject"] == null)
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString());
+            //}
+            //else if (drpProject.Items.Count > 1)
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, drpProject.SelectedItem.Text);
+            //}
+            //else
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, Session["drpProject"].ToString());
+            //}
+            constr = ConfigurationManager.ConnectionStrings["Defaultdbconnection"].ConnectionString;
             if (Session["Login"] == null)
             {
                 Response.Redirect("Login.aspx");
@@ -71,7 +71,7 @@ namespace MigrationTool
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM UserDetails WHERE UserName LIKE '%' + @UserName + '%'"))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName LIKE '%' + @UserName + '%'"))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
@@ -233,8 +233,6 @@ namespace MigrationTool
                 {
                     e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvExcelFile, "Edit$" + e.Row.RowIndex);
                     e.Row.Attributes["style"] = "cursor:pointer";
-                    //e.Row.Attributes["style"] = "width:8px";
-
                 }
             }
         }
@@ -261,7 +259,7 @@ namespace MigrationTool
             ViewState["dt"] = dt;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                query1 = "update UserDetails set FirstName= @FirstName, LastName = @LastName, UserName = @UserName, Password = @Password, Email = @Email, CreatedDate = @CreatedDate where UserId = @UserId";
+                query1 = "update Users set FirstName= @FirstName, LastName = @LastName, UserName = @UserName, Password = @Password, Email = @Email, CreatedDate = @CreatedDate where UserId = @UserId";
                 using (SqlCommand cmd = new SqlCommand(query1))
                 {
                     cmd.Connection = con;

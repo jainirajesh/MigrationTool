@@ -40,6 +40,7 @@ namespace MigrationTool
             if (!this.IsPostBack)
             {
                 ViewState["dtEdit"] = null;
+                ViewState["dtUpdateDB"] = null;
                 gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
                 gvExcelFile.PageIndex = 0;
                 gvExcelFile.DataBind();
@@ -287,9 +288,11 @@ namespace MigrationTool
             gvExcelFile.DataBind();
             manageControls();
         }
+
         protected void OnUpdate(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+            DataTable dt, dtUpdateDB = new DataTable();
+
             if (ViewState["dtEdit"] != null)
             {
                 dt = (DataTable)ViewState["dtEdit"];
@@ -298,13 +301,28 @@ namespace MigrationTool
             {
                 dt = (DataTable)ViewState["dt"];
             }
+
+            if (ViewState["dtUpdateDB"] != null)
+            {
+                dtUpdateDB = (DataTable)ViewState["dtUpdateDB"];
+            }
+            else
+            {
+                dtUpdateDB = dt.Clone();
+            }
+
             GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
             gvExcelFile.DataSource = dt;
             gvExcelFile.DataBind();
+
+            dtUpdateDB.Rows.Add();
             for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
                 dt.Rows[row.RowIndex][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
             }
+
+            ViewState["dtUpdateDB"] = dtUpdateDB;
             ViewState["dtEdit"] = dt;
             gvExcelFile.EditIndex = -1;
             gvExcelFile.DataSource = dt;
@@ -334,8 +352,8 @@ namespace MigrationTool
         {
             DataTable dt = new DataTable();
             string query2 = "";
-            dt = (DataTable)ViewState["dtEdit"];
-            if (ViewState["dtEdit"] != null)
+            dt = (DataTable)ViewState["dtUpdateDB"];
+            if (ViewState["dtUpdateDB"] != null)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -367,6 +385,7 @@ namespace MigrationTool
                     }
                 }
             }
+            ViewState["dtUpdateDB"] = null;
             gvExcelFile.EditIndex = -1;
             gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
             gvExcelFile.DataBind();
@@ -376,6 +395,8 @@ namespace MigrationTool
         protected void btnRevert_Click(object sender, EventArgs e)
         {
             ViewState["dtEdit"] = null;
+            ViewState["dtUpdateDB"] = null;
+
             gvExcelFile.EditIndex = -1;
             gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
             gvExcelFile.DataBind();

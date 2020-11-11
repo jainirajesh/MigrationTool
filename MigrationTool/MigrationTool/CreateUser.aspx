@@ -1,7 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="MigrationTool.CreateUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('input[id$=Email]').keyup(function () {
+                var clone = $(this).val();
+                $('input[id$=UserName]').val(clone);
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="header2">Create User</div>
@@ -25,6 +33,14 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="2">Email :
+                    <br />
+                    <asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="Email" ErrorMessage="UserName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email Format" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Email" ForeColor="Red">*</asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">User Name :
                     <br />
                     <asp:TextBox ID="UserName" runat="server" CssClass="textbox1"></asp:TextBox>
@@ -39,13 +55,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Email : <br /><asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="Email" ErrorMessage="UserName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email Format" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Email" ForeColor="Red">*</asp:RegularExpressionValidator>
-             </td>
-            </tr>
-            <tr>
-                <td colspan="2">User Role :<br /><asp:DropDownList ID="UserRole" runat="server" CssClass="textbox1" DataValueField="Admin,User" DataTextField="values">
+                <td colspan="2">User Role :<br />
+                    <asp:DropDownList ID="UserRole" runat="server" CssClass="textbox1" DataValueField="Admin,User" DataTextField="values">
                         <asp:ListItem Selected="True">User</asp:ListItem>
                         <asp:ListItem Value="Admin"></asp:ListItem>
                     </asp:DropDownList>
@@ -61,7 +72,7 @@
                 <td style="text-align: left;">
                     <asp:Button ID="btnClear" runat="server" Text="Clear" Width="150px" CausesValidation="false" OnClick="btnClear_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /></td>
             </tr>
-            <tr style="display:none;">
+            <tr style="display: none;">
                 <td colspan="2">
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" Visible="false" />
                     <asp:Label ID="Label1" runat="server"></asp:Label>

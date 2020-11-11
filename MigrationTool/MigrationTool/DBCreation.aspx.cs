@@ -58,7 +58,7 @@ namespace MigrationTool
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     if (dt.Rows.Count == 0)
-                    {                      
+                    {
                         String sqlquery = "CREATE Database " + DatabaseBox1.Text;
                         sqlcomm = new SqlCommand(sqlquery, sqlconn);
                         sqlcomm.ExecuteNonQuery();
@@ -72,7 +72,7 @@ namespace MigrationTool
                             cmd.Parameters.AddWithValue("@CreatedBy", Session["Login"].ToString());
                             cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString("dd/MM/yyyy"));
                             cmd.ExecuteNonQuery();
-                        }                        
+                        }
 
                         //string datasource = System.Configuration.ConfigurationManager.AppSettings["datasource"];
                         //string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, DatabaseBox1.Text);
@@ -89,6 +89,21 @@ namespace MigrationTool
                         }
                         sqlconn1.Close();
 
+                        //sqlconn.Open();
+                        using (cmd = new SqlCommand("SELECT * from Projects", sqlconn))
+                        {
+                            DropDownList drpProject = (DropDownList)Master.FindControl("drpProject");
+                            drpProject.Items.Clear();
+                            drpProject.DataSource = cmd.ExecuteReader();
+                            drpProject.DataTextField = "ProjectName";
+                            drpProject.DataValueField = "ProjectName";
+                            drpProject.DataBind();
+                            drpProject.ClearSelection();
+                            drpProject.Items.FindByValue(System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString()).Selected = true;
+                            Session["drpProject"] = System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString();
+                        }
+                        //sqlconn.Close();
+
                         //Label1.Text = "<b> Project <b>" + DatabaseBox1.Text + "<b> is created successfully!!";
                         Response.Write("<script>alert('Project created successfully.')</script>");
                     }
@@ -100,7 +115,8 @@ namespace MigrationTool
                 }
                 catch (Exception ex)
                 {
-                    Label1.Text = "<b>" + ex.Message;
+                    //Label1.Text = "<b>" + ex.Message;
+                    Response.Write("<script>alert(" + ex.Message + ") </script>");
                 }
                 binddata();
             }
@@ -122,11 +138,26 @@ namespace MigrationTool
                 sqlcomm.ExecuteNonQuery();
                 sqlconn.Close();
                 sqlconn.Open();
-                sqlquery = "use master; ALTER DATABASE " + DbName + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE; EXEC sp_renamedb " + DbName + ", " + DbName + "_ToBeDeleted; ALTER DATABASE " + DbName + "_ToBeDeleted SET MULTI_USER";
+                //sqlquery = "use master; ALTER DATABASE " + DbName + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE; EXEC sp_renamedb " + DbName + ", " + DbName + "_ToBeDeleted; ALTER DATABASE " + DbName + "_ToBeDeleted SET MULTI_USER";
+                sqlquery = "use master; ALTER DATABASE " + DbName + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE " + DbName + "";
                 sqlcomm = new SqlCommand(sqlquery, sqlconn);
                 sqlcomm.ExecuteNonQuery();
                 sqlconn.Close();
 
+                sqlconn.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT * from Projects", sqlconn))
+                {
+                    DropDownList drpProject = (DropDownList)Master.FindControl("drpProject");
+                    drpProject.Items.Clear();
+                    drpProject.DataSource = cmd.ExecuteReader();
+                    drpProject.DataTextField = "ProjectName";
+                    drpProject.DataValueField = "ProjectName";
+                    drpProject.DataBind();
+                    drpProject.ClearSelection();
+                    drpProject.Items.FindByValue(System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString()).Selected = true;
+                    Session["drpProject"] = System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString();
+                }
+                sqlconn.Close();
                 binddata();
             }
         }

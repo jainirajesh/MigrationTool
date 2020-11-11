@@ -44,13 +44,7 @@
             margin: auto;
         }
 
-        /*.centered {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-          
-            transform: translate(-50%, -50%);
-        }*/
+       
 
         fieldset {
             font-family: sans-serif;
@@ -92,7 +86,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div align="center">
-        <table style="width: 100%; height: 100%; text-align: center; vertical-align: middle;" class="centered">
+        <table style="width: 100%; height: 100%; text-align: center; vertical-align: middle;">
             <tr>
                 <td width="10%"></td>
                 <td width="40%" style="text-align: right;">

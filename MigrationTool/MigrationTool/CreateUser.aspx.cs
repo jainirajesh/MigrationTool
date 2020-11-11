@@ -44,7 +44,7 @@ namespace MigrationTool
             {
                 SqlConnection sqlconn = new SqlConnection(constr);
                 sqlconn.Open();
-                var sqlCommand = new SqlCommand("select * from UserDetails where UserName = '" + UserName.Text + "'", sqlconn);
+                var sqlCommand = new SqlCommand("select * from Users where UserName = '" + UserName.Text + "'", sqlconn);
 
                 SqlDataReader count = sqlCommand.ExecuteReader();
 
@@ -60,7 +60,7 @@ namespace MigrationTool
                     DateTime today = DateTime.Today;
                     string CreatedDate = today.ToString();
                     //string Date = Convert.ToDateTime(CreatedDate.Text).ToString("yyyy-MM-dd");
-                    String sqlquery = "INSERT INTO UserDetails(FirstName,LastName,UserName,Password,Email,UserRole,CreatedDate) values('" + FirstName.Text + "','" + LastName.Text + "','" + UserName.Text + "','" + Password.Text + "','" + Email.Text + "','" + UserRole.SelectedValue + "','" + CreatedDate + "')";
+                    String sqlquery = "INSERT INTO Users(FirstName,LastName,UserName,Password,Email,UserRole,CreatedDate) values('" + FirstName.Text + "','" + LastName.Text + "','" + UserName.Text + "','" + Password.Text + "','" + Email.Text + "','" + UserRole.SelectedValue + "','" + CreatedDate + "')";
                     sqlcomm = new SqlCommand(sqlquery, sqlconn);
                     sqlcomm.ExecuteNonQuery();
                     sqlconn.Close();
