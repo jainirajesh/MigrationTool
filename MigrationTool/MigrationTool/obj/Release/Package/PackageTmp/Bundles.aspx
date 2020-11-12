@@ -2,10 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-       
+        
     </style>
+
+    <script type="text/javascript">
+        function ShowProgressBar() {
+            document.getElementById('dvProgressBar').style.visibility = 'visible';
+        }
+
+        function HideProgressBar() {
+            document.getElementById('dvProgressBar').style.visibility = "hidden";
+        }
+    </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" onload="javascript:HideProgressBar()">
     <div class="header2">Bundles</div>
     <table align="center" style="border: none" width="100%">
         <tr>
@@ -21,7 +31,7 @@
                 </asp:RadioButtonList>
             </td>
             <td style="text-align: left;">
-                <asp:Button runat="server" ID="btnSubmit" CssClass="button7" Style="background-color: #2979FF" Text="Create" OnClick="btnSubmit_Click" />
+                <asp:Button runat="server" ID="btnSubmit" CssClass="button7" Style="background-color: #2979FF;" Text="Create" OnClick="btnSubmit_Click" OnClientClick="javascript:ShowProgressBar()" />
             </td>
             <td style="text-align: left;">&nbsp;</td>
         </tr>
@@ -55,4 +65,13 @@
             </td>
         </tr>
     </table>
+    <div>
+        <div class="">
+            <div id="dvProgressBar" style="visibility: hidden; margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: white; z-index: 30001; opacity: 0.7;">
+               <p style="position: absolute; color: White; top: 50%; left: 50%;"> <asp:Image runat="server" AlternateText="Please wait.." ImageUrl="~/Images/ajax-loader.gif"/>
+                </p>
+            </div>
+        </div>
+        <br style="clear: both" />
+    </div>
 </asp:Content>

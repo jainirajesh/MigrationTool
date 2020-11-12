@@ -55,7 +55,7 @@
         <tr>
             <td style="text-align: left">&nbsp;</td>
             <td style="text-align: left" class="auto-style3">
-                <asp:Button ID="btnFetchData" runat="server" Text="Fetch Data" CssClass="button7" Style="background-color: #2979FF" OnClick="btnFetchData_Click" />&nbsp;&nbsp;
+                <asp:Button ID="btnFetchData" runat="server" Text="Fetch Data" CssClass="button7" Style="background-color: #2979FF" OnClick="btnFetchData_Click" OnClientClick="javascript:ShowProgressBar()"/>&nbsp;&nbsp;
                  &nbsp;&nbsp;
                 <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" CssClass="button7" Style="background-color: crimson" OnClientClick=" return confirm_meth()" Text="Upload" />
             </td>

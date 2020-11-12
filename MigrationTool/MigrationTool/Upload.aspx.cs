@@ -582,7 +582,7 @@ namespace MigrationTool
             try
             {
                 if (FileUpload1.HasFile)
-                {
+                {                    
                     string ConStr = "";
                     string ext = Path.GetExtension(FileUpload1.FileName).ToLower();
                     //getting the path of the file   

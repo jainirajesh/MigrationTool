@@ -83,6 +83,15 @@
             cursor: pointer;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('input[id$=Email]').keyup(function () {
+                var clone = $(this).val();
+                $('input[id$=UserName]').val(clone);
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div align="center">
@@ -96,14 +105,14 @@
                     <fieldset style="width: 350px; height: 260px; text-align: center;">
                         <br />
                         <asp:TextBox ID="txtusername" placeholder="Username" runat="server"
-                            Width="280px" CssClass="input"></asp:TextBox>
+                            Width="280px" CssClass="input" ValidationGroup="login"></asp:TextBox>
                         <br />
                         <asp:TextBox ID="txtpassword" placeholder="Password" runat="server"
-                            Width="280px" TextMode="Password" CssClass="input"></asp:TextBox>
+                            Width="280px" TextMode="Password" CssClass="input" ValidationGroup="login"></asp:TextBox>
                         <br />
                         <br />
                         <asp:Button ID="btnsubmit" runat="server" Text="Login" Width="150px" Height="40px"
-                            OnClick="btnsubmit_Click" Style="background-color: #4CAF50" CssClass="button7" />
+                            OnClick="btnsubmit_Click" Style="background-color: #4CAF50" CssClass="button7"  ValidationGroup="login"/>
                         <asp:Button Width="150px" runat="server" ID="btnSign" Height="40px" Text="Register" CausesValidation="false" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" /><br />
                         <asp:LinkButton runat="server" Visible="false" ID="lnkFSignUp" Text="SignUp" ForeColor="Black" Font-Size="Smaller" Font-Italic="true"></asp:LinkButton>&nbsp;
                         <asp:LinkButton runat="server" ID="lnkForgotPassword" Text="Forgot Password?" ForeColor="Black" Font-Size="Smaller" Font-Italic="true"></asp:LinkButton>
@@ -197,6 +206,14 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="LastName" ErrorMessage="LastName is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
+                 <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3">Email :<br />
+                        <asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="Email" ErrorMessage="Email is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Invalid Email Format" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+                    </td>
+                </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="3">User Name :<br />
@@ -211,15 +228,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="Password" ErrorMessage="Password is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Password" ErrorMessage="Password length must be between 7 to 10 characters" ForeColor="Red" ValidationExpression="^[a-zA-Z0-9'@&amp;#.\s]{7,10}$">*</asp:RegularExpressionValidator>--%>
                     </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="3">Email :<br />
-                        <asp:TextBox ID="Email" runat="server" CssClass="textbox1"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="Email" ErrorMessage="Email is empty" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" ErrorMessage="Invalid Email Format" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
-                    </td>
-                </tr>
+                </tr>               
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="3">User Role :<br />

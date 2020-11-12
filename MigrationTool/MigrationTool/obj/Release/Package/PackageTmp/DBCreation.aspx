@@ -99,7 +99,7 @@
                 <td style="text-align: left;">Include Master Data :
                     <asp:CheckBox ID="CheckBox1" runat="server"></asp:CheckBox></td>
                 <td style="text-align: right;">
-                    <asp:Button ID="btnCreateProject" runat="server" Text="Create Project" CssClass="button7" Style="background-color: #2979FF" OnClick="btnCreateProject_Click"></asp:Button>
+                    <asp:Button ID="btnCreateProject" runat="server" Text="Create Project" CssClass="button7" Style="background-color: #2979FF" OnClick="btnCreateProject_Click" OnClientClick="javascript:ShowProgressBar()"></asp:Button>
                 </td>
             </tr>
            
