@@ -277,7 +277,6 @@ namespace MigrationTool
             {
                 DataRow[] dr = ((DataTable)ViewState["dt"]).Select("UserName like '%" + txtSearch.Text.ToString() + "%'");
                 DataTable dt1 = dr.CopyToDataTable();
-                ViewState["dt"] = dt1;
                 gvExcelFile.DataSource = dt1;
                 gvExcelFile.DataBind();
                 manageControls();
@@ -286,7 +285,6 @@ namespace MigrationTool
             {
                 DataRow[] dr = ((DataTable)ViewState["dt"]).Select("Name like '%" + txtSearch.Text.ToString() + "%'");
                 DataTable dt1 = dr.CopyToDataTable();
-                ViewState["dt"] = dt1;
                 gvExcelFile.DataSource = dt1;
                 gvExcelFile.DataBind();
                 manageControls();
@@ -295,7 +293,6 @@ namespace MigrationTool
             {
                 DataRow[] dr = ((DataTable)ViewState["dt"]).Select("Entity1_Name like '%" + txtSearch.Text.ToString() + "%'");
                 DataTable dt1 = dr.CopyToDataTable();
-                ViewState["dt"] = dt1;
                 gvExcelFile.DataSource = dt1;
                 gvExcelFile.DataBind();
                 manageControls();
@@ -555,12 +552,13 @@ namespace MigrationTool
         protected void OnUpdate(object sender, EventArgs e)
         {
             GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
+            int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
             DataTable dt = ViewState["dt"] as DataTable;
             gvExcelFile.DataSource = dt;
             gvExcelFile.DataBind();
             for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
-                dt.Rows[row.RowIndex][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
+                dt.Rows[rowindex][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
             }
             ViewState["dt"] = dt;
             gvExcelFile.EditIndex = -1;

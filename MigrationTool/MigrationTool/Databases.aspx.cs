@@ -39,9 +39,10 @@ namespace MigrationTool
             }
             if (!this.IsPostBack)
             {
+                Session["SortedView"] = null;
                 ViewState["dtEdit"] = null;
                 ViewState["dtUpdateDB"] = null;
-                gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
+                gvExcelFile.DataSource = BindGrid();
                 gvExcelFile.PageIndex = 0;
                 gvExcelFile.DataBind();
             }
@@ -80,26 +81,18 @@ namespace MigrationTool
             }
         }
 
-        private DataTable BindGrid(string search)
+        private DataTable BindGrid()
         {
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Databases WHERE Name LIKE '%' + @Name + '%'"))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Databases"))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
-                    {
-                        DataTable dtCloned = new DataTable();
-                        cmd.Connection = con;
-                        cmd.Parameters.AddWithValue("@Name", search);
+                    {                        
+                        cmd.Connection = con;                        
                         sda.SelectCommand = cmd;
-                        sda.Fill(dtCloned);
-                        dt = dtCloned.Clone();
-                        dt.Columns[4].DataType = typeof(string);
-                        foreach (DataRow row in dtCloned.Rows)
-                        {
-                            dt.ImportRow(row);
-                        }
+                        sda.Fill(dt);                      
                         ViewState["dt"] = dt;
                     }
                 }
@@ -109,16 +102,18 @@ namespace MigrationTool
 
         protected void Search(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+            DataTable dtSearch = new DataTable();
             if (ViewState["dtEdit"] != null)
             {
-                dt = (DataTable)ViewState["dtEdit"];
+                dtSearch = (DataTable)ViewState["dtEdit"];
             }
             else
             {
-                dt = BindGrid(txtSearch.Text.Trim());
+                dtSearch = (DataTable)ViewState["dt"];
             }
-            gvExcelFile.DataSource = dt;
+            dtSearch.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
+            //ViewState["dtSearch"] = dtSearch.DefaultView.ToTable();
+            gvExcelFile.DataSource = dtSearch;
             gvExcelFile.DataBind();
             manageControls();
         }
@@ -133,8 +128,16 @@ namespace MigrationTool
             }
             else
             {
-                gvExcelFile.DataSource = ViewState["dt"];
-                gvExcelFile.DataBind();
+                DataTable dt = new DataTable();
+                if (ViewState["dtEdit"] != null)
+                {
+                    dt = (DataTable)ViewState["dtEdit"];
+                }
+                else
+                {
+                    dt = (DataTable)ViewState["dt"];
+                }
+                BindToGridview(dt);
             }
             manageControls();
         }
@@ -170,9 +173,10 @@ namespace MigrationTool
                 sortingDirection = "Asc";
 
             }
-            DataView sortedView = new DataView(BindGrid(txtSearch.Text.Trim()));
+            DataView sortedView = new DataView((DataTable)ViewState["dt"]);
             sortedView.Sort = e.SortExpression + " " + sortingDirection;
             Session["SortedView"] = sortedView;
+            sortedView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
             gvExcelFile.DataSource = sortedView;
             gvExcelFile.DataBind();
             manageControls();
@@ -180,8 +184,8 @@ namespace MigrationTool
 
         protected void btnExportToCSV_Click(object sender, EventArgs e)
         {
-            DataTable dt = BindGrid(txtSearch.Text.Trim());
-
+            DataTable dt = (DataTable)ViewState["dt"];
+            dt.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment;filename= Databases.csv");
@@ -215,7 +219,8 @@ namespace MigrationTool
 
         protected void btnDownload_Click(object sender, EventArgs e)
         {
-            DataTable dt = BindGrid(txtSearch.Text.Trim());
+            DataTable dt = (DataTable)ViewState["dt"];
+            dt.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
 
             //Create a dummy GridView
             GridView GridView1 = new GridView();
@@ -258,10 +263,9 @@ namespace MigrationTool
                 }
                 else
                 {
-                    dt = BindGrid(txtSearch.Text.Trim());
+                    dt = (DataTable)ViewState["dt"];
                 }
-                gvExcelFile.DataSource = dt;
-                gvExcelFile.DataBind();
+                BindToGridview(dt);
                 manageControls();
             }
         }
@@ -274,28 +278,30 @@ namespace MigrationTool
                 {
                     e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvExcelFile, "Edit$" + e.Row.RowIndex);
                     e.Row.Attributes["style"] = "cursor:pointer";
-                    //e.Row.Attributes["style"] = "width:8px";
                 }
             }
         }
 
         protected void rdoDataType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
+            txtSearch.Text = "";
+            gvExcelFile.DataSource = BindGrid();
             gvExcelFile.PageIndex = 0;
             gvExcelFile.DataBind();
             manageControls();
         }
+
         protected void OnUpdate(object sender, EventArgs e)
         {
-            DataTable dt, dtUpdateDB = new DataTable();
+            DataTable dt1, dtUpdateDB, dtTemp = new DataTable();
+
             if (ViewState["dtEdit"] != null)
             {
-                dt = (DataTable)ViewState["dtEdit"];
+                dt1 = (DataTable)ViewState["dtEdit"];                
             }
             else
             {
-                dt = (DataTable)ViewState["dt"];
+                dt1 = (DataTable)ViewState["dt"];
             }
 
             if (ViewState["dtUpdateDB"] != null)
@@ -304,25 +310,24 @@ namespace MigrationTool
             }
             else
             {
-                dtUpdateDB = dt.Clone();
+                dtUpdateDB = dt1.Clone();
             }
-
+            dtTemp = dt1.Copy();
             GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
-            gvExcelFile.DataSource = dt;
-            gvExcelFile.DataBind();
-
+            int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
+            BindToGridview(dt1);
+            DataRow filterData1 = dtTemp.Select(string.Format("Convert(Name, 'System.String') like '{0}'", (row.Cells[1].Controls[0] as TextBox).Text)).FirstOrDefault();
             dtUpdateDB.Rows.Add();
             for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
-                dt.Rows[row.RowIndex][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
+                filterData1[j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
                 dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
             }
-            ViewState["dtEdit"] = dt;
-            ViewState["dtUpdateDB"] = dtUpdateDB;
-            gvExcelFile.EditIndex = -1;
-            gvExcelFile.DataSource = dt;
-            gvExcelFile.DataBind();
 
+            ViewState["dtUpdateDB"] = dtUpdateDB;
+            ViewState["dtEdit"] = dtTemp;
+            gvExcelFile.EditIndex = -1;
+            BindToGridview(dtTemp);
             manageControls();
         }
 
@@ -338,8 +343,7 @@ namespace MigrationTool
             {
                 dt = (DataTable)ViewState["dt"];
             }
-            gvExcelFile.DataSource = dt;
-            gvExcelFile.DataBind();
+            BindToGridview(dt);
             manageControls();
         }
 
@@ -378,10 +382,11 @@ namespace MigrationTool
                     }
                 }
             }
-            gvExcelFile.EditIndex = -1;
-            gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
-            gvExcelFile.DataBind();
+            txtSearch.Text = "";
             ViewState["dtUpdateDB"] = null;
+            gvExcelFile.EditIndex = -1;
+            gvExcelFile.DataSource = BindGrid();
+            gvExcelFile.DataBind();
             manageControls();
         }
 
@@ -389,10 +394,17 @@ namespace MigrationTool
         {
             ViewState["dtEdit"] = null;
             ViewState["dtUpdateDB"] = null;
+
             gvExcelFile.EditIndex = -1;
-            gvExcelFile.DataSource = BindGrid(txtSearch.Text.Trim());
-            gvExcelFile.DataBind();
+            BindToGridview((DataTable)ViewState["dt"]);
             manageControls();
+        }
+
+        public void BindToGridview(DataTable dtToBind)
+        {
+            dtToBind.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
+            gvExcelFile.DataSource = dtToBind;
+            gvExcelFile.DataBind();
         }
     }
 }

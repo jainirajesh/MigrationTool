@@ -51,6 +51,7 @@ namespace MigrationTool
             {
                 try
                 {
+                    Label1.Text = "";
                     SqlConnection sqlconn = new SqlConnection(ConfigurationManager.ConnectionStrings["Defaultdbconnection"].ConnectionString);
                     sqlconn.Open();
                     SqlCommand cmd = new SqlCommand("Select * from Projects where ProjectName='" + DatabaseBox1.Text + "'", sqlconn);
@@ -70,7 +71,7 @@ namespace MigrationTool
                             cmd.Parameters.AddWithValue("@ProjectName", DatabaseBox1.Text.Trim());
                             cmd.Parameters.AddWithValue("@ProjectDescription", txtDesc.Text.Trim());
                             cmd.Parameters.AddWithValue("@CreatedBy", Session["Login"].ToString());
-                            cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString("dd/MM/yyyy"));
+                            cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString());
                             cmd.ExecuteNonQuery();
                         }
 
@@ -115,8 +116,8 @@ namespace MigrationTool
                 }
                 catch (Exception ex)
                 {
-                    //Label1.Text = "<b>" + ex.Message;
-                    Response.Write("<script>alert(" + ex.Message + ") </script>");
+                    Label1.Text = "<b>" + ex.Message;
+                    //Response.Write("<script>alert(" + ex.Message + ") </script>");
                 }
                 binddata();
             }

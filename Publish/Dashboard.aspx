@@ -76,7 +76,7 @@
                     <div class="content" style="display: block; height: 180px;">
                         <p>
                             <asp:GridView ID="Hosts" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
+                                HeaderStyle-CssClass="header1" EmptyDataText="No records to display."
                                 AutoGenerateColumns="False" RowStyle-CssClass="rows" Width="100%" OnRowDataBound="OnRowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                                 <Columns>
                                     <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%">
@@ -120,7 +120,7 @@
                     <div class="content" style="display: block; height: 180px;">
                         <p>
                             <asp:GridView ID="Storage" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
+                                HeaderStyle-CssClass="header1" EmptyDataText="No records to display."
                                 AutoGenerateColumns="False" RowStyle-CssClass="rows" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                                 <Columns>
                                     <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%">
@@ -164,7 +164,7 @@
                     <button type="button" class="collapsible">Applications</button>
                     <div class="content" style="display: block; height:180px;">
                         <p>
-                            <asp:GridView ID="Applications" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
+                            <asp:GridView ID="Applications" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header1" EmptyDataText="No records to display."
                                 AutoGenerateColumns="False" RowStyle-CssClass="rows" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                                 <Columns>
                                     <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%">
@@ -211,7 +211,7 @@
                     <button type="button" class="collapsible">Databases</button>
                     <div class="content" style="display: block; height: 180px;">
                         <p>
-                            <asp:GridView ID="Databases" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header1" EmptyDataText="No records has been added."
+                            <asp:GridView ID="Databases" runat="server" CssClass="mydatagrid" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header1" EmptyDataText="No records to display."
                                 AutoGenerateColumns="False" RowStyle-CssClass="rows" Width="100%" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                                 <Columns>
                                     <asp:BoundField ItemStyle-Width="120px" DataField="Name" HeaderText="Name" SortExpression="Name" ControlStyle-Width="90%">

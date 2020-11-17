@@ -40,8 +40,8 @@
         </tr>
         <tr>
             <td colspan="3">
-                <asp:GridView ID="grdBundles" runat="server" Width="100%" AllowSorting="true" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                    HeaderStyle-CssClass="header1" OnSorting="grdBundles_Sorting" RowStyle-CssClass="rows" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+                <asp:GridView ID="grdBundles" runat="server" Width="100%" AllowSorting="true" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager" AllowPaging="true" PageSize="20" 
+                    HeaderStyle-CssClass="header1" OnSorting="grdBundles_Sorting" ShowHeaderWhenEmpty="true" RowStyle-CssClass="rows" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" OnPageIndexChanging="grdBundles_PageIndexChanging1">
                     <Columns>
                         <asp:BoundField DataField="Application" HeaderText="Application" SortExpression="Application"></asp:BoundField>
                         <asp:BoundField DataField="Server" HeaderText="Server" SortExpression="Server"></asp:BoundField>
@@ -65,10 +65,19 @@
             </td>
         </tr>
     </table>
+    <table width="100%">
+        <tr>
+            <td style="text-align: right;">
+                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
+                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
+            </td>
+        </tr>
+    </table>
     <div>
         <div class="">
             <div id="dvProgressBar" style="visibility: hidden; margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: white; z-index: 30001; opacity: 0.7;">
-               <p style="position: absolute; color: White; top: 50%; left: 50%;"> <asp:Image runat="server" AlternateText="Please wait.." ImageUrl="~/Images/ajax-loader.gif"/>
+                <p style="position: absolute; color: White; top: 50%; left: 50%;">
+                    <asp:Image runat="server" AlternateText="Please wait.." ImageUrl="~/Images/ajax-loader.gif" />
                 </p>
             </div>
         </div>

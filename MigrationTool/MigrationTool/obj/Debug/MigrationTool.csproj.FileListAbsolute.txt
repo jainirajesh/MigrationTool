@@ -70,4 +70,3 @@ C:\Rajesh\Projects\MigrationTool\MigrationTool\MigrationTool\obj\Debug\Migration
 C:\Rajesh\Projects\MigrationTool\MigrationTool\MigrationTool\obj\Debug\MigrationTool.csproj.CopyComplete
 C:\Rajesh\Projects\MigrationTool\MigrationTool\MigrationTool\obj\Debug\MigrationTool.dll
 C:\Rajesh\Projects\MigrationTool\MigrationTool\MigrationTool\obj\Debug\MigrationTool.pdb
-C:\Rajesh\Projects\MigrationTool\MigrationTool\MigrationTool\obj\Debug\MigrationTool.csprojAssemblyReference.cache
