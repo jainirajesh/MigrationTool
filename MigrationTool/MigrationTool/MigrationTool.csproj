@@ -139,12 +139,16 @@
     <Content Include="CreateUser.aspx" />
     <Content Include="Templates.aspx" />
     <Content Include="Dashboard.aspx" />
-    <Content Include="Relationships.aspx" />
+    <Content Include="Dependencies.aspx" />
     <Content Include="Databases.aspx" />
     <Content Include="DBCreation.aspx" />
-    <Content Include="Hosts.aspx" />
+    <Content Include="Servers.aspx" />
     <Content Include="Preferences.aspx" />
     <Content Include="Bundles.aspx" />
+    <Content Include="DownloadBundles.aspx" />
+    <Content Include="MovePackage.aspx" />
+    <Content Include="Networks.aspx" />
+    <Content Include="WebForm1.aspx" />
     <Content Include="wwwCSS.css" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -297,12 +301,12 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Relationships.aspx.cs">
-      <DependentUpon>Relationships.aspx</DependentUpon>
+    <Compile Include="Dependencies.aspx.cs">
+      <DependentUpon>Dependencies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Relationships.aspx.designer.cs">
-      <DependentUpon>Relationships.aspx</DependentUpon>
+    <Compile Include="Dependencies.aspx.designer.cs">
+      <DependentUpon>Dependencies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Databases.aspx.cs">
       <DependentUpon>Databases.aspx</DependentUpon>
@@ -318,12 +322,12 @@
     <Compile Include="DBCreation.aspx.designer.cs">
       <DependentUpon>DBCreation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Hosts.aspx.cs">
-      <DependentUpon>Hosts.aspx</DependentUpon>
+    <Compile Include="Servers.aspx.cs">
+      <DependentUpon>Servers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Hosts.aspx.designer.cs">
-      <DependentUpon>Hosts.aspx</DependentUpon>
+    <Compile Include="Servers.aspx.designer.cs">
+      <DependentUpon>Servers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Preferences.aspx.cs">
       <DependentUpon>Preferences.aspx</DependentUpon>
@@ -338,6 +342,34 @@
     </Compile>
     <Compile Include="Bundles.aspx.designer.cs">
       <DependentUpon>Bundles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadBundles.aspx.cs">
+      <DependentUpon>DownloadBundles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadBundles.aspx.designer.cs">
+      <DependentUpon>DownloadBundles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovePackage.aspx.cs">
+      <DependentUpon>MovePackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovePackage.aspx.designer.cs">
+      <DependentUpon>MovePackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Networks.aspx.cs">
+      <DependentUpon>Networks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Networks.aspx.designer.cs">
+      <DependentUpon>Networks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

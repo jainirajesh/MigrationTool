@@ -30,7 +30,7 @@ namespace MigrationTool
             {
                 Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString());
             }
-            else if(drpProject.Items.Count > 1)
+            else if (drpProject.Items.Count > 1)
             {
                 Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, drpProject.SelectedItem.Text);
             }
@@ -44,7 +44,47 @@ namespace MigrationTool
             foreach (string db in strAdminlist)
             {
                 BindGrid(db);
-            }     
+            }
+            GetCounts();
+        }
+
+        public void GetCounts()
+        {                    
+            using (SqlConnection thisConnection = new SqlConnection(constr))
+            {
+                thisConnection.Open();
+                using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Hosts", thisConnection))
+                {                    
+                    lblServers.Text = cmdCount.ExecuteScalar().ToString();
+                }
+
+                using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Applications", thisConnection))
+                {                    
+                    lblApplications.Text = cmdCount.ExecuteScalar().ToString();
+                }
+
+                using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Storage", thisConnection))
+                {                    
+                    lblStorage.Text = cmdCount.ExecuteScalar().ToString();
+                }
+
+                using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Databases", thisConnection))
+                {
+                    lblDatabases.Text = cmdCount.ExecuteScalar().ToString();
+                }
+
+                using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Relationships", thisConnection))
+                {
+                    lblDependencies.Text = cmdCount.ExecuteScalar().ToString();
+                }
+
+                //using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Hosts", thisConnection))
+                //{
+                //    thisConnection.Open();
+                //    lblServers.Text = cmdCount.ExecuteScalar().ToString();
+                //}
+                thisConnection.Close();
+            }            
         }
 
         private void BindGrid(string table)

@@ -42,11 +42,11 @@ namespace MigrationTool
             if (!this.IsPostBack)
             {
                 ViewState["dt"] = null;
-                btnDownload.Visible = false;
-                btnExportToCSV.Visible = false;
+                imgbtnExcel.Visible = false;
+                imgbtnCSV.Visible = false;
             }
         }
-        protected void btnExportToCSV_Click(object sender, EventArgs e)
+        protected void imgbtnCSV_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
 
@@ -80,7 +80,7 @@ namespace MigrationTool
             Response.Flush();
             Response.End();
         }
-        protected void btnDownload_Click(object sender, EventArgs e)
+        protected void imgbtnExcel_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
 
@@ -118,9 +118,9 @@ namespace MigrationTool
             if (rdoDataType.SelectedIndex == 0)
             {
                 btnSubmit.Text = "Create";
-                grdBundles.Visible = false;
-                btnDownload.Visible = false;
-                btnExportToCSV.Visible = false;
+                //grdBundles.Visible = false;
+                //btnDownload.Visible = false;
+                //btnExportToCSV.Visible = false;
             }
             else
             {
@@ -128,8 +128,8 @@ namespace MigrationTool
                 grdBundles.DataSource = null;
                 grdBundles.DataBind();
                 grdBundles.Visible = true;
-                btnDownload.Visible = false;
-                btnExportToCSV.Visible = false;
+                imgbtnExcel.Visible = false;
+                imgbtnCSV.Visible = false;
             }
         }
 
@@ -169,6 +169,33 @@ namespace MigrationTool
             grdBundles.DataBind();
         }
 
+        public void DisplayData()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string strQuery = "SELECT LAppServer.Application, LAppServer.Server, LAppServer.bundle, Hosts.Physical_or_Virtual, Hosts.Source_DC, Hosts.In_Scope, Hosts.Environment, Applications.Owner_Primary FROM LAppServer INNER JOIN Applications ON LAppServer.Application = Applications.Name INNER JOIN Hosts ON LAppServer.Server = Hosts.Name";
+                using (SqlCommand cmd = new SqlCommand(strQuery))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        DataTable dtCloned = new DataTable();
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        sda.Fill(dtCloned);
+                        ViewState["dt"] = dtCloned;
+                        grdBundles.DataSource = dtCloned;
+                        grdBundles.DataBind();
+                        if (dtCloned.Rows.Count > 0)
+                        {
+                            imgbtnExcel.Visible = true;
+                            imgbtnCSV.Visible = true;
+                            grdBundles.Visible = true;
+                        }
+                    }
+                }
+            }
+        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -176,8 +203,8 @@ namespace MigrationTool
             {
                 try
                 {
-                    btnDownload.Visible = false;
-                    btnExportToCSV.Visible = false;
+                    imgbtnExcel.Visible = false;
+                    imgbtnCSV.Visible = false;
                     SqlConnection con = new SqlConnection(constr);
                     con.Open();
                     string filename = Server.MapPath("~/Images/CreateBunble.sql");
@@ -189,38 +216,40 @@ namespace MigrationTool
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
+
+                    DisplayData();
                 }
                 catch (Exception ex)
                 {
-
+                    DisplayData();
                 }
             }
-            else
-            {
-                DataTable dt = new DataTable();
-                using (SqlConnection con = new SqlConnection(constr))
-                {
-                    string strQuery = "SELECT LAppServer.Application, LAppServer.Server, LAppServer.bundle, Hosts.Physical_or_Virtual, Hosts.Source_DC, Hosts.In_Scope, Hosts.Environment, Applications.Owner_Primary FROM LAppServer INNER JOIN Applications ON LAppServer.Application = Applications.Name INNER JOIN Hosts ON LAppServer.Server = Hosts.Name";
-                    using (SqlCommand cmd = new SqlCommand(strQuery))
-                    {
-                        using (SqlDataAdapter sda = new SqlDataAdapter())
-                        {
-                            DataTable dtCloned = new DataTable();
-                            cmd.Connection = con;
-                            sda.SelectCommand = cmd;
-                            sda.Fill(dtCloned);
-                            ViewState["dt"] = dtCloned;
-                            grdBundles.DataSource = dtCloned;
-                            grdBundles.DataBind();
-                            if (dtCloned.Rows.Count > 0)
-                            {
-                                btnDownload.Visible = true;
-                                btnExportToCSV.Visible = true;
-                            }
-                        }
-                    }
-                }
-            }
+            //else
+            //{
+            //    DataTable dt = new DataTable();
+            //    using (SqlConnection con = new SqlConnection(constr))
+            //    {
+            //        string strQuery = "SELECT LAppServer.Application, LAppServer.Server, LAppServer.bundle, Hosts.Physical_or_Virtual, Hosts.Source_DC, Hosts.In_Scope, Hosts.Environment, Applications.Owner_Primary FROM LAppServer INNER JOIN Applications ON LAppServer.Application = Applications.Name INNER JOIN Hosts ON LAppServer.Server = Hosts.Name";
+            //        using (SqlCommand cmd = new SqlCommand(strQuery))
+            //        {
+            //            using (SqlDataAdapter sda = new SqlDataAdapter())
+            //            {
+            //                DataTable dtCloned = new DataTable();
+            //                cmd.Connection = con;
+            //                sda.SelectCommand = cmd;
+            //                sda.Fill(dtCloned);
+            //                ViewState["dt"] = dtCloned;
+            //                grdBundles.DataSource = dtCloned;
+            //                grdBundles.DataBind();
+            //                if (dtCloned.Rows.Count > 0)
+            //                {
+            //                    btnDownload.Visible = true;
+            //                    btnExportToCSV.Visible = true;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         protected void grdBundles_PageIndexChanging1(object sender, GridViewPageEventArgs e)

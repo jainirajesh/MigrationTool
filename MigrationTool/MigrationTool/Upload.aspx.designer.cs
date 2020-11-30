@@ -103,21 +103,21 @@ namespace MigrationTool {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// btnExportToCSV control.
+        /// imgbtnCSV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportToCSV;
+        protected global::System.Web.UI.WebControls.ImageButton imgbtnCSV;
         
         /// <summary>
-        /// btnDownload control.
+        /// imgbtnExcel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDownload;
+        protected global::System.Web.UI.WebControls.ImageButton imgbtnExcel;
     }
 }

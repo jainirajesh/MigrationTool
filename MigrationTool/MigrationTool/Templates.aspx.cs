@@ -16,7 +16,7 @@ namespace MigrationTool
 
         protected void lnkHosts_Click(object sender, EventArgs e)
         {
-            Download("Hosts");
+            Download("Servers");
         }
 
         public void Download(string strFilename)
@@ -44,7 +44,7 @@ namespace MigrationTool
 
         protected void lnkRelations_Click(object sender, EventArgs e)
         {
-            Download("Relations");
+            Download("Dependencies");
         }
     }
 }

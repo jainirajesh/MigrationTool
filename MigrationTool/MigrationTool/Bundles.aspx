@@ -1,10 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Bundles.aspx.cs" Inherits="MigrationTool.Bundles" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        
-    </style>
-
+   
     <script type="text/javascript">
         function ShowProgressBar() {
             document.getElementById('dvProgressBar').style.visibility = 'visible';
@@ -14,26 +11,30 @@
             document.getElementById('dvProgressBar').style.visibility = "hidden";
         }
     </script>
+<style type="text/css">
+    .auto-style1 {
+        width: 150px;
+        height: 57px;
+    }
+    .auto-style2 {
+        height: 57px;
+    }
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" onload="javascript:HideProgressBar()">
     <div class="header2">Bundles</div>
     <table align="center" style="border: none" width="100%">
         <tr>
-            <td style="text-align: left;">&nbsp;</td>
-            <td style="text-align: left;">&nbsp;</td>
-            <td style="text-align: left;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="text-align: left; width: 300px;">
-                <asp:RadioButtonList ID="rdoDataType" AutoPostBack="true" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDataType_SelectedIndexChanged">
+            <td style="text-align: left; " class="auto-style1">
+                <asp:RadioButtonList ID="rdoDataType" AutoPostBack="true" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDataType_SelectedIndexChanged" Width="218px">
                     <asp:ListItem Selected="True">Create Bundle</asp:ListItem>
-                    <asp:ListItem>View Bundles</asp:ListItem>
+                    <%--<asp:ListItem>View Bundles</asp:ListItem>--%>
                 </asp:RadioButtonList>
             </td>
-            <td style="text-align: left;">
+            <td style="text-align: left;" class="auto-style2">
                 <asp:Button runat="server" ID="btnSubmit" CssClass="button7" Style="background-color: #2979FF;" Text="Create" OnClick="btnSubmit_Click" OnClientClick="javascript:ShowProgressBar()" />
             </td>
-            <td style="text-align: left;">&nbsp;</td>
+            <td style="text-align: left;" class="auto-style2"></td>
         </tr>
         <tr>
             <td colspan="3">&nbsp;</td>
@@ -68,8 +69,10 @@
     <table width="100%">
         <tr>
             <td style="text-align: right;">
-                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
-                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
+                <%--<asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="imgbtnCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />--%>
+                <asp:ImageButton ID="imgbtnCSV" runat="server" AlternateText="Download CSV" ToolTip="Download CSV" ImageUrl="~/Images/CSV.png" Height="30px" Width="30px" OnClick="imgbtnCSV_Click" />
+                <%--<asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="imgbtnExcel_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />--%>
+                <asp:ImageButton ID="imgbtnExcel" runat="server" AlternateText="Download Excel" ToolTip="Download Excel" ImageUrl="~/Images/Excel.png" Height="30px" Width="30px" OnClick="imgbtnExcel_Click" />
             </td>
         </tr>
     </table>

@@ -85,15 +85,6 @@ namespace MigrationTool {
         protected global::System.Web.UI.WebControls.ImageButton Image1;
         
         /// <summary>
-        /// divAdmin1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdmin1;
-        
-        /// <summary>
         /// divAssets control.
         /// </summary>
         /// <remarks>
@@ -128,6 +119,33 @@ namespace MigrationTool {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
+        
+        /// <summary>
+        /// divAdmin1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdmin1;
+        
+        /// <summary>
+        /// div2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
+        
+        /// <summary>
+        /// ImageButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
         /// Label1 control.

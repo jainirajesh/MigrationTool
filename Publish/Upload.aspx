@@ -24,11 +24,11 @@
             <td style="text-align: left; vertical-align: top;">Data Type :</td>
             <td style="text-align: left;">
                 <asp:RadioButtonList ID="rdoDataType" AutoPostBack="true" OnSelectedIndexChanged="rdoDataType_SelectedIndexChanged" runat="server" RepeatDirection="Horizontal">
-                    <asp:ListItem Selected="True">Hosts</asp:ListItem>
+                    <asp:ListItem Selected="True">Servers</asp:ListItem>
                     <asp:ListItem>Applications</asp:ListItem>
                     <asp:ListItem>Storage</asp:ListItem>
                     <asp:ListItem>Databases</asp:ListItem>
-                    <asp:ListItem>Relationships</asp:ListItem>
+                    <asp:ListItem>Dependencies</asp:ListItem>
                     <asp:ListItem>Users</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
@@ -109,8 +109,10 @@
                 <asp:Label ID="Label1" runat="server" Font-Bold="True"></asp:Label>
             </td>
             <td style="text-align: right;">
-                <asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="btnExportToCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />
-                <asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="btnDownload_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000;" />
+                <%--<asp:Button ID="btnExportToCSV" runat="server" Text="Export to CSV" OnClick="imgbtnCSV_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />--%>
+                <asp:ImageButton ID="imgbtnCSV" runat="server" AlternateText="Download CSV" ToolTip="Download CSV" ImageUrl="~/Images/CSV.png" Height="30px" Width="30px" OnClick="imgbtnCSV_Click" />
+                <%--<asp:Button ID="btnDownload" runat="server" Text="Export to Excel" OnClick="imgbtnExcel_Click" CssClass="button7" Style="background-color: #CCCCCC; color: #000000" />--%>
+                <asp:ImageButton ID="imgbtnExcel" runat="server" AlternateText="Download Excel" ToolTip="Download Excel" ImageUrl="~/Images/Excel.png" Height="30px" Width="30px" OnClick="imgbtnExcel_Click" />
             </td>
         </tr>
     </table>

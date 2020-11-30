@@ -27,6 +27,7 @@
             position: relative;
         }
 
+
             .button7:active {
                 box-shadow: inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
             }
@@ -54,11 +55,23 @@
         }
 
         .header2 {
-            padding: 0;
+            color: #565656 !important;
+            font-weight: 600;
+            margin-bottom: 0 !important;
+            font-size: 1.875rem;
+            line-height: 1.2;
+            margin-top: 0;
+            display: block;            
+            /*margin-block-start: 0.83em;*/
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            /*padding: 0;
             text-align: center;
             color: #565656;
             font-size: 30px;
-            font-family: 'Bookman Old Style', cursive, sans-serif;
+            font-family: 'Bookman Old Style', cursive, sans-serif;*/
         }
 
         hr.MenuLine {
@@ -207,16 +220,26 @@
             box-sizing: border-box;
         }
 
+        .textbox2 {
+            width: 80%;
+            padding: 8px 8px;
+            margin: 3px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
         .modal {
             background-color: Black;
             filter: alpha(opacity=70);
-            opacity: 0.8;    
+            opacity: 0.8;
         }
 
         .loading {
             background-color: Black;
             filter: alpha(opacity=90);
-            opacity: 0.8;            
+            opacity: 0.8;
             border-width: 3px;
             border-style: solid;
             border-color: black;
@@ -226,12 +249,15 @@
             height: 250px;
         }
 
-         .centered {
+        .centered {
             position: fixed;
             top: 50%;
             left: 50%;
-          
             transform: translate(-50%, -50%);
+        }
+
+        .auto-style1 {
+            width: 61px;
         }
     </style>
     <script type="text/javascript">
@@ -268,7 +294,7 @@
                             <td width="75%" style="text-align: center">
                                 <div class="navbar">
                                     <a href="Dashboard.aspx">Dashboard</a>
-                                    <div class="dropdown" runat="server" id="divAdmin1">
+                                    <div class="dropdown" runat="server" style="display: none;">
                                         <button class="dropbtn" disabled>
                                             Admin 
                                 <i class="fa fa-caret-down"></i>
@@ -282,15 +308,16 @@
                                     </div>
                                     <div class="dropdown" runat="server" id="divAssets">
                                         <button class="dropbtn" disabled>
-                                            Assets 
+                                            Data Administration 
                                 <i class="fa fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-content">
-                                            <a href="Hosts.aspx">Hosts</a>
+                                            <a href="Servers.aspx">Servers</a>
                                             <a href="Applications.aspx">Applications</a>
                                             <a href="Storage.aspx" runat="server" id="mnServers">Storage</a>
                                             <a href="Databases.aspx">Databases</a>
-                                            <a href="Relationships.aspx">Relationships</a>
+                                            <a href="Dependencies.aspx">Dependencies</a>
+                                            <a href="Networks.aspx">Networks</a>
                                             <a href="Bundles.aspx">Bundles</a>
                                         </div>
                                     </div>
@@ -301,30 +328,57 @@
                                         </button>
                                         <div class="dropdown-content">
                                             <a href="Templates.aspx">Download Templates</a>
+                                            <a href="DownloadBundles.aspx">Download Bundles</a>
                                         </div>
                                     </div>
-                                    <a href="Preferences.aspx">Preferences</a>
+                                    <a href="MovePackage.aspx">Move Packages</a>
+                                    <%--<a href="Preferences.aspx">Preferences</a>--%>
                                 </div>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="#565656"></asp:Label>
-                                |
-                                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="#565656" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
-                                <br />
-                                <br />
-                                </dropdownlist><asp:Label ID="Label1" runat="server" Text="Project : "></asp:Label>
-                                <asp:DropDownList ID="drpProject" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpProject_SelectedIndexChanged">
-                                </asp:DropDownList>
+                                <table style="text-align: right; width: 100%;">
+                                    <tr>
+                                        <td style="text-align: right;" colspan="3">
+                                            <asp:Label ID="lblLoginUser" runat="server" Font-Bold="true" Font-Size="Small" ForeColor="#565656"></asp:Label>
+                                            |                                        
+                                            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" ForeColor="#565656" Font-Size="Small" Font-Italic="true">Logout</asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%"></td>
+                                        <td style="width: 10%; text-align: right;">
+                                            <div class="navbar" style="text-align: right;" runat="server" id="divAdmin1">
+                                                <div class="dropdown" runat="server" id="div2" style="text-align: right;">
+                                                    <%-- <button class="dropbtn" disabled>--%>
+                                                    <asp:ImageButton ID="ImageButton1" runat="server" Height="30px" Width="30px" ImageUrl="~/Images/Settings.png" />
+                                                    <i class="fa fa-caret-down"></i>
+                                                    <%--</button>--%>
+                                                    <div class="dropdown-content">
+                                                        <a href="DBCreation.aspx">Create Project</a>
+                                                        <a href="Upload.aspx">Upload Data</a>
+                                                        <a href="Users.aspx">Users</a>
+                                                        <a href="CreateUser.aspx">Create User</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <asp:Label ID="Label1" runat="server" Text="Project : "></asp:Label>
+                                            <asp:DropDownList ID="drpProject" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpProject_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
-
                     </table>
                     <hr class="Menuline">
                 </div>
                 <div id="dvProgressBar" style="visibility: hidden; margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: white; z-index: 30001; opacity: 0.7;">
-               <p style="position: absolute; color: White; top: 50%; left: 50%;"> <asp:Image runat="server" AlternateText="Please wait.." ImageUrl="~/Images/ajax-loader.gif"/>
-                </p>
-            </div>
+                    <p style="position: absolute; color: White; top: 50%; left: 50%;">
+                        <asp:Image runat="server" AlternateText="Please wait.." ImageUrl="~/Images/ajax-loader.gif" />
+                    </p>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
 

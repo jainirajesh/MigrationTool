@@ -22,9 +22,9 @@
         <tr>
             <td></td>
             <td>
-                <asp:Label runat="server" ID="Label1" Text="Hosts"></asp:Label></td>
+                <asp:Label runat="server" ID="Label1" Text="Servers"></asp:Label></td>
             <td>
-                <asp:LinkButton ID="lnkHosts" runat="server" OnClick="lnkHosts_Click">Hosts.xlsx</asp:LinkButton></td>
+                <asp:LinkButton ID="lnkHosts" runat="server" OnClick="lnkHosts_Click">Servers.xlsx</asp:LinkButton></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
@@ -54,9 +54,9 @@
         <tr>
             <td></td>
             <td>
-                <asp:Label runat="server" ID="Label5" Text="Relations"></asp:Label></td>
+                <asp:Label runat="server" ID="Label5" Text="Dependencies"></asp:Label></td>
             <td>
-                <asp:LinkButton ID="lnkRelations" runat="server" OnClick="lnkRelations_Click">Relations.xlsx</asp:LinkButton></td>
+                <asp:LinkButton ID="lnkRelations" runat="server" OnClick="lnkRelations_Click">Dependencies.xlsx</asp:LinkButton></td>
             <td>&nbsp;</td>
         </tr>
 

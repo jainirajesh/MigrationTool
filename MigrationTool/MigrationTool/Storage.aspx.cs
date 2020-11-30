@@ -39,6 +39,7 @@ namespace MigrationTool
             }
             if (!this.IsPostBack)
             {
+                ViewState["dtDelete"] = null;
                 Session["SortedView"] = null;
                 ViewState["dtEdit"] = null;
                 ViewState["dtUpdateDB"] = null;
@@ -55,8 +56,8 @@ namespace MigrationTool
         {
             if (gvExcelFile.Rows.Count > 0)
             {
-                btnExportToCSV.Visible = true;
-                btnDownload.Visible = true;
+                imgbtnCSV.Visible = true;
+                imgbtnExcel.Visible = true;
                 txtSearch.Visible = true;
                 btnSearch.Visible = true;
                 if (Session["Role"].ToString() == "Admin")
@@ -72,8 +73,8 @@ namespace MigrationTool
             }
             else
             {
-                btnExportToCSV.Visible = false;
-                btnDownload.Visible = false;
+                imgbtnCSV.Visible = false;
+                imgbtnExcel.Visible = false;
                 txtSearch.Visible = false;
                 btnSearch.Visible = false;
                 btnCommit.Visible = false;
@@ -183,7 +184,7 @@ namespace MigrationTool
             manageControls();
         }
 
-        protected void btnExportToCSV_Click(object sender, EventArgs e)
+        protected void imgbtnCSV_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
             dt.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
@@ -218,7 +219,7 @@ namespace MigrationTool
             Response.End();
         }
 
-        protected void btnDownload_Click(object sender, EventArgs e)
+        protected void imgbtnExcel_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
             dt.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
@@ -273,14 +274,14 @@ namespace MigrationTool
 
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            if (Session["Role"].ToString() == "Admin")
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvExcelFile, "Edit$" + e.Row.RowIndex);
-                    e.Row.Attributes["style"] = "cursor:pointer";
-                }
-            }
+            //if (Session["Role"].ToString() == "Admin")
+            //{
+            //    if (e.Row.RowType == DataControlRowType.DataRow)
+            //    {
+            //        e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvExcelFile, "Edit$" + e.Row.RowIndex);
+            //        e.Row.Attributes["style"] = "cursor:pointer";
+            //    }
+            //}
         }
 
         protected void rdoDataType_SelectedIndexChanged(object sender, EventArgs e)
@@ -292,13 +293,146 @@ namespace MigrationTool
             manageControls();
         }
 
+        protected void OnDelete(object sender, EventArgs e)
+        {
+            GridViewRow row1 = (sender as ImageButton).NamingContainer as GridViewRow;
+            lblStorage.Text = row1.Cells[1].Text.Trim();
+            ModalPopupExtender2.Show();
+            //DataTable dt1, dtDelete, dtTemp = new DataTable();
+
+            //if (ViewState["dtEdit"] != null)
+            //{
+            //    dt1 = (DataTable)ViewState["dtEdit"];
+            //}
+            //else
+            //{
+            //    dt1 = (DataTable)ViewState["dt"];
+            //}
+
+            //if (ViewState["dtDelete"] != null)
+            //{
+            //    dtDelete = (DataTable)ViewState["dtDelete"];
+            //}
+            //else
+            //{
+            //    dtDelete = dt1.Clone();
+            //}
+            //dtTemp = dt1.Copy();
+            //GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
+            //int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
+            //BindToGridview(dt1);
+            //DataRow filterData1 = dtTemp.Select(string.Format("Convert(Name, 'System.String') like '{0}'", row.Cells[1].Text)).FirstOrDefault();
+            //dtDelete.Rows.Add();            
+            //for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
+            //{                
+            //    dtDelete.Rows[dtDelete.Rows.Count - 1][0] = row.Cells[j].Text;               
+            //}
+            //filterData1.Delete();
+            //ViewState["dtDelete"] = dtDelete;
+            ////ViewState["dtUpdateDB"] = dtUpdateDB;
+            //ViewState["dtEdit"] = dtTemp;
+            //gvExcelFile.EditIndex = -1;
+            //BindToGridview(dtTemp);
+            //manageControls();
+        }
+
+        protected void OnEdit(object sender, EventArgs e)
+        {
+            GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
+            int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
+
+            lblStorageName.Text = "";
+            txtType.Text = "";
+            txtVendor.Text = "";
+            txtModel.Text = "";
+            txtInScope.Text = "";
+            txtJustification.Text = "";
+            txtStorageCapacityAllocated.Text = "";
+            txtStorageCapacityUsed.Text = "";
+            txtPrimaryOwner.Text = "";
+            txtSecondaryOwner.Text = "";
+            txtHostType.Text = "";
+            txtPrimaryTechContact.Text = "";
+            txtSecondaryTechContact.Text = "";
+            txtDiscoverySource.Text = "";
+            txtEnvironment.Text = "";
+            txtComments.Text = "";
+
+            if (row.Cells[1].Text.Trim() != "&nbsp;")
+            {
+                lblStorageName.Text = row.Cells[1].Text.Trim();
+            }
+            if (row.Cells[2].Text.Trim() != "&nbsp;")
+            {
+                txtType.Text = row.Cells[2].Text.Trim();
+            }
+            if (row.Cells[3].Text.Trim() != "&nbsp;")
+            {
+                txtVendor.Text = row.Cells[3].Text.Trim();
+            }
+            if (row.Cells[4].Text.Trim() != "&nbsp;")
+            {
+                txtModel.Text = row.Cells[4].Text.Trim();
+            }
+            if (row.Cells[5].Text.Trim() != "&nbsp;")
+            {
+                txtInScope.Text = row.Cells[5].Text.Trim();
+            }
+            if (row.Cells[6].Text.Trim() != "&nbsp;")
+            {
+                txtJustification.Text = row.Cells[6].Text.Trim();
+            }
+            if (row.Cells[7].Text.Trim() != "&nbsp;")
+            {
+                txtStorageCapacityAllocated.Text = row.Cells[7].Text.Trim();
+            }
+            if (row.Cells[8].Text.Trim() != "&nbsp;")
+            {
+                txtStorageCapacityUsed.Text = row.Cells[8].Text.Trim();
+            }
+            if (row.Cells[9].Text.Trim() != "&nbsp;")
+            {
+                txtPrimaryOwner.Text = row.Cells[9].Text.Trim();
+            }
+            if (row.Cells[10].Text.Trim() != "&nbsp;")
+            {
+                txtSecondaryOwner.Text = row.Cells[10].Text.Trim();
+            }
+            if (row.Cells[11].Text.Trim() != "&nbsp;")
+            {
+                txtHostType.Text = row.Cells[11].Text.Trim();
+            }
+            if (row.Cells[12].Text.Trim() != "&nbsp;")
+            {
+                txtPrimaryTechContact.Text = row.Cells[12].Text.Trim();
+            }
+            if (row.Cells[13].Text.Trim() != "&nbsp;")
+            {
+                txtSecondaryTechContact.Text = row.Cells[13].Text.Trim();
+            }
+            if (row.Cells[14].Text.Trim() != "&nbsp;")
+            {
+                txtDiscoverySource.Text = row.Cells[14].Text.Trim();
+            }            
+            if (row.Cells[15].Text.Trim() != "&nbsp;")
+            {
+                txtEnvironment.Text = row.Cells[15].Text.Trim();
+            }
+            if (row.Cells[16].Text.Trim() != "&nbsp;")
+            {
+                txtComments.Text = row.Cells[16].Text.Trim();
+            }
+
+            ModalPopupExtender1.Show();
+        }
+
         protected void OnUpdate(object sender, EventArgs e)
         {
             DataTable dt1, dtUpdateDB, dtTemp = new DataTable();
 
             if (ViewState["dtEdit"] != null)
             {
-                dt1 = (DataTable)ViewState["dtEdit"];                
+                dt1 = (DataTable)ViewState["dtEdit"];
             }
             else
             {
@@ -314,15 +448,60 @@ namespace MigrationTool
                 dtUpdateDB = dt1.Clone();
             }
             dtTemp = dt1.Copy();
-            GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
-            int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
+            // GridViewRow row = (GridViewRow)ViewState["row"]; // (sender as ImageButton).NamingContainer as GridViewRow;
+            // int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
             BindToGridview(dt1);
-            DataRow filterData1 = dtTemp.Select(string.Format("Convert(Name, 'System.String') like '{0}'", (row.Cells[1].Controls[0] as TextBox).Text)).FirstOrDefault();
+            DataRow filterData1 = dtTemp.Select(string.Format("Convert(Name, 'System.String') like '{0}'", lblStorageName.Text.Trim())).FirstOrDefault();
             dtUpdateDB.Rows.Add();
-            for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
+            //for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
-                filterData1[j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
-                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][j - 1] = (row.Cells[j].Controls[0] as TextBox).Text;
+                filterData1[0] = lblStorageName.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][0] = lblStorageName.Text.Trim();
+
+                filterData1[1] = txtType.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][1] = txtType.Text.Trim();
+
+                filterData1[2] = txtVendor.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][2] = txtVendor.Text.Trim();
+
+                filterData1[3] = txtModel.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][3] = txtModel.Text.Trim();
+
+                filterData1[4] = txtInScope.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][4] = txtInScope.Text.Trim();
+
+                filterData1[5] = txtJustification.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][5] = txtJustification.Text.Trim();
+
+                filterData1[6] = txtStorageCapacityAllocated.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][6] = txtStorageCapacityAllocated.Text.Trim();
+
+                filterData1[7] = txtStorageCapacityUsed.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][7] = txtStorageCapacityUsed.Text.Trim();
+
+                filterData1[8] = txtPrimaryOwner.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][8] = txtPrimaryOwner.Text.Trim();
+
+                filterData1[9] = txtSecondaryOwner.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][9] = txtSecondaryOwner.Text.Trim();
+
+                filterData1[10] = txtHostType.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][10] = txtHostType.Text.Trim();
+
+                filterData1[11] = txtPrimaryTechContact.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][11] = txtPrimaryTechContact.Text.Trim();
+
+                filterData1[12] = txtSecondaryTechContact.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][12] = txtSecondaryTechContact.Text.Trim();
+
+                filterData1[13] = txtDiscoverySource.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][13] = txtDiscoverySource.Text.Trim();
+                             
+                filterData1[14] = txtEnvironment.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][14] = txtEnvironment.Text.Trim();
+
+                filterData1[15] = txtComments.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][15] = txtComments.Text.Trim();
             }
 
             ViewState["dtUpdateDB"] = dtUpdateDB;
@@ -386,8 +565,30 @@ namespace MigrationTool
                     }
                 }
             }
+
+            if (ViewState["dtDelete"] != null)
+            {
+                DataTable dtDel = new DataTable();
+                dtDel = (DataTable)ViewState["dtDelete"];
+                for (int i = 0; i < dtDel.Rows.Count; i++)
+                {
+                    using (SqlConnection con = new SqlConnection(constr))
+                    {                        
+                        query2 = "delete Storage where Name = @Name";
+                        using (SqlCommand cmd = new SqlCommand(query2))
+                        {
+                            cmd.Connection = con;
+                            cmd.Parameters.AddWithValue("@Name", dtDel.Rows[i]["Name"].ToString());
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                }
+            }
             txtSearch.Text = "";
             ViewState["dtUpdateDB"] = null;
+            ViewState["dtDelete"] = null;
             gvExcelFile.EditIndex = -1;
             gvExcelFile.DataSource = BindGrid();
             gvExcelFile.DataBind();
@@ -398,7 +599,7 @@ namespace MigrationTool
         {
             ViewState["dtEdit"] = null;
             ViewState["dtUpdateDB"] = null;
-
+            ViewState["dtDelete"] = null;
             gvExcelFile.EditIndex = -1;
             BindToGridview((DataTable)ViewState["dt"]);
             manageControls();
@@ -409,6 +610,49 @@ namespace MigrationTool
             dtToBind.DefaultView.RowFilter = "Name LIKE '%" + txtSearch.Text.ToString() + "%'";
             gvExcelFile.DataSource = dtToBind;
             gvExcelFile.DataBind();
+        }
+
+        protected void OnDeleteConfirm(object sender, EventArgs e)
+        {
+            //GridViewRow row1 = (sender as ImageButton).NamingContainer as GridViewRow;
+            //lblHost.Text = row1.Cells[1].Text.Trim();
+            //ModalPopupExtender2.Show();
+            DataTable dt1, dtDelete, dtTemp = new DataTable();
+
+            if (ViewState["dtEdit"] != null)
+            {
+                dt1 = (DataTable)ViewState["dtEdit"];
+            }
+            else
+            {
+                dt1 = (DataTable)ViewState["dt"];
+            }
+
+            if (ViewState["dtDelete"] != null)
+            {
+                dtDelete = (DataTable)ViewState["dtDelete"];
+            }
+            else
+            {
+                dtDelete = dt1.Clone();
+            }
+            dtTemp = dt1.Copy();
+            //GridViewRow row = (sender as ImageButton).NamingContainer as GridViewRow;
+            //int rowindex = (gvExcelFile.PageSize * gvExcelFile.PageIndex) + row.RowIndex;
+            BindToGridview(dt1);
+            DataRow filterData1 = dtTemp.Select(string.Format("Convert(Name, 'System.String') like '{0}'", lblStorage.Text)).FirstOrDefault();
+            dtDelete.Rows.Add();
+            //for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
+            {
+                dtDelete.Rows[dtDelete.Rows.Count - 1][0] = lblStorage.Text;
+            }
+            filterData1.Delete();
+            ViewState["dtDelete"] = dtDelete;
+            //ViewState["dtUpdateDB"] = dtUpdateDB;
+            ViewState["dtEdit"] = dtTemp;
+            gvExcelFile.EditIndex = -1;
+            BindToGridview(dtTemp);
+            manageControls();
         }
     }
 }

@@ -59,15 +59,15 @@ namespace MigrationTool
         {
             if (gvExcelFile.Rows.Count > 0)
             {
-                btnExportToCSV.Visible = true;
-                btnDownload.Visible = true;
+                imgbtnExcel.Visible = true;
+                imgbtnCSV.Visible = true;
                 txtSearch.Visible = true;
                 btnSearch.Visible = true;
             }
             else
             {
-                btnExportToCSV.Visible = false;
-                btnDownload.Visible = false;
+                imgbtnCSV.Visible = false;
+                imgbtnExcel.Visible = false;
                 txtSearch.Visible = false;
                 btnSearch.Visible = false;
             }
@@ -91,7 +91,7 @@ namespace MigrationTool
                         sqlBulk.WriteToServer(dt);
                         con1.Close();
                     }
-                    else if (rdoDataType.Text == "Hosts")
+                    else if (rdoDataType.Text == "Servers")
                     {
                         SqlBulkCopy sqlBulk = new SqlBulkCopy(con);
                         sqlBulk.DestinationTableName = "Hosts";
@@ -123,7 +123,7 @@ namespace MigrationTool
                         sqlBulk.WriteToServer(dt);
                         con.Close();
                     }
-                    else if (rdoDataType.Text == "Relationships")
+                    else if (rdoDataType.Text == "Dependencies")
                     {
                         SqlBulkCopy sqlBulk = new SqlBulkCopy(con);
                         sqlBulk.DestinationTableName = "Relationships";
@@ -166,7 +166,7 @@ namespace MigrationTool
                         }
                     }
                 }
-                else if (rdoDataType.Text == "Hosts")
+                else if (rdoDataType.Text == "Servers")
                 {
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM Hosts WHERE Name LIKE '%' + @Name + '%'"))
                     {
@@ -252,7 +252,7 @@ namespace MigrationTool
                         }
                     }
                 }
-                else if (rdoDataType.Text == "Relationships")
+                else if (rdoDataType.Text == "Dependencies")
                 {
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM Relationships WHERE Entity1_Name LIKE '%' + @Entity1_Name + '%'"))
                     {
@@ -281,7 +281,7 @@ namespace MigrationTool
                 gvExcelFile.DataBind();
                 manageControls();
             }
-            else if (rdoDataType.Text == "Hosts" || rdoDataType.Text == "Applications" || rdoDataType.Text == "Storage" || rdoDataType.Text == "Databases")
+            else if (rdoDataType.Text == "Servers" || rdoDataType.Text == "Applications" || rdoDataType.Text == "Storage" || rdoDataType.Text == "Databases")
             {
                 DataRow[] dr = ((DataTable)ViewState["dt"]).Select("Name like '%" + txtSearch.Text.ToString() + "%'");
                 DataTable dt1 = dr.CopyToDataTable();
@@ -289,7 +289,7 @@ namespace MigrationTool
                 gvExcelFile.DataBind();
                 manageControls();
             }
-            else if (rdoDataType.Text == "Relationships")
+            else if (rdoDataType.Text == "Dependencies")
             {
                 DataRow[] dr = ((DataTable)ViewState["dt"]).Select("Entity1_Name like '%" + txtSearch.Text.ToString() + "%'");
                 DataTable dt1 = dr.CopyToDataTable();
@@ -354,7 +354,7 @@ namespace MigrationTool
             manageControls();
         }
 
-        protected void btnExportToCSV_Click(object sender, EventArgs e)
+        protected void imgbtnCSV_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
 
@@ -389,7 +389,7 @@ namespace MigrationTool
             Response.End();
         }
 
-        protected void btnDownload_Click(object sender, EventArgs e)
+        protected void imgbtnExcel_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["dt"];
 
@@ -452,7 +452,7 @@ namespace MigrationTool
                         e.Row.Cells[7].Text = "User Role";
                         e.Row.Cells[8].Text = "Creation Date";
                     }
-                    if (rdoDataType.SelectedItem.Text == "Hosts")
+                    if (rdoDataType.SelectedItem.Text == "Servers")
                     {
                         e.Row.Cells[1].Text = "Name";
                         e.Row.Cells[2].Text = "OS";
@@ -522,7 +522,7 @@ namespace MigrationTool
                         e.Row.Cells[11].Text = "Environment";
                         e.Row.Cells[12].Text = "Comments";
                     }
-                    else if (rdoDataType.SelectedItem.Text == "Relationships")
+                    else if (rdoDataType.SelectedItem.Text == "Dependencies")
                     {
                         e.Row.Cells[1].Text = "Entity1 Name";
                         e.Row.Cells[2].Text = "Entity1 Type";
