@@ -24,19 +24,21 @@ namespace MigrationTool
         protected void Page_Load(object sender, EventArgs e)
         {
             DropDownList drpProject = (DropDownList)Master.FindControl("drpProject");
-            if (Session["drpProject"] == null)
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString());
-            }
-            else if (drpProject.Items.Count > 1)
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, drpProject.SelectedItem.Text);
-            }
-            else
-            {
-                Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, Session["drpProject"].ToString());
-            }
-            constr = Session["constr"].ToString();
+            //if (Session["drpProject"] == null)
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, System.Configuration.ConfigurationManager.AppSettings["defaultdb"].ToString());
+            //}
+            //else if (drpProject.Items.Count > 1)
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, drpProject.SelectedItem.Text);
+            //}
+            //else
+            //{
+            //    Session["constr"] = string.Format(ConfigurationManager.ConnectionStrings["sqldbconnection"].ConnectionString, Session["drpProject"].ToString());
+            //}
+            //constr = Session["constr"].ToString();
+
+            constr = string.Format(ConfigurationManager.ConnectionStrings["Defaultdbconnection"].ConnectionString);
         }
         protected void SignUp_Click(object sender, EventArgs e)
         {
@@ -50,7 +52,8 @@ namespace MigrationTool
 
                 if (count.HasRows)
                 {
-                    Label1.Text = "<b>" + "User already exists !!";
+                    Response.Write("<script>alert('User already exists !!')</script>");
+                    //Label1.Text = "<b>" + "User already exists !!";
                     sqlconn.Close();
                 }
                 else
@@ -64,7 +67,8 @@ namespace MigrationTool
                     sqlcomm = new SqlCommand(sqlquery, sqlconn);
                     sqlcomm.ExecuteNonQuery();
                     sqlconn.Close();
-                    Label1.Text = "<b>" + "User is successfully created " + " !!";
+                    Response.Write("<script>alert('User is successfully created.')</script>");
+                    //Label1.Text = "<b>" + "User is successfully created " + " !!";
                 }
             }
         }

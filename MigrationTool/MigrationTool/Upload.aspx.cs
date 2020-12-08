@@ -638,6 +638,7 @@ namespace MigrationTool
             {
                 FileUpload1.FileContent.Dispose();
                 Response.Write("<script>alert('Please upload valid excel file.')</script>");
+                //Response.Write(ex.ToString());
             }
         }
     }

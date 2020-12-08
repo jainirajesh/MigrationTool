@@ -294,7 +294,7 @@ namespace MigrationTool
         protected void OnDelete(object sender, EventArgs e)
         {
             GridViewRow row1 = (sender as ImageButton).NamingContainer as GridViewRow;                                   
-            lblUser.Text = row1.Cells[1].Text.Trim();
+            lblUser.Text = row1.Cells[3].Text.Trim();
             ModalPopupExtender2.Show();
             //DataTable dt1, dtDelete, dtTemp = new DataTable();
 
@@ -346,17 +346,17 @@ namespace MigrationTool
             txtEmail.Text = "";
             drpUserRole.SelectedItem.Text = "";          
 
+            if (row.Cells[3].Text.Trim() != "&nbsp;")
+            {
+                lblUsername.Text = row.Cells[3].Text.Trim();
+            }
             if (row.Cells[1].Text.Trim() != "&nbsp;")
             {
-                lblUsername.Text = row.Cells[1].Text.Trim();
+                txtFirstname.Text = row.Cells[1].Text.Trim();
             }
             if (row.Cells[2].Text.Trim() != "&nbsp;")
             {
-                txtFirstname.Text = row.Cells[2].Text.Trim();
-            }
-            if (row.Cells[3].Text.Trim() != "&nbsp;")
-            {
-                txtLastname.Text = row.Cells[3].Text.Trim();
+                txtLastname.Text = row.Cells[2].Text.Trim();
             }
             if (row.Cells[4].Text.Trim() != "&nbsp;")
             {
@@ -403,8 +403,8 @@ namespace MigrationTool
             dtUpdateDB.Rows.Add();
             //for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
-                filterData1[0] = lblUsername.Text.Trim();
-                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][0] = lblUsername.Text.Trim();
+                filterData1[3] = lblUsername.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][3] = lblUsername.Text.Trim();
 
                 filterData1[1] = txtFirstname.Text.Trim();
                 dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][1] = txtFirstname.Text.Trim();
@@ -412,14 +412,14 @@ namespace MigrationTool
                 filterData1[2] = txtLastname.Text.Trim();
                 dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][2] = txtLastname.Text.Trim();
 
-                filterData1[3] = txtPassword.Text.Trim();
-                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][3] = txtPassword.Text.Trim();
+                filterData1[4] = txtPassword.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][4] = txtPassword.Text.Trim();
 
-                filterData1[4] = txtEmail.Text.Trim();
-                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][4] = txtEmail.Text.Trim();
+                filterData1[5] = txtEmail.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][5] = txtEmail.Text.Trim();
 
-                filterData1[5] = drpUserRole.SelectedItem.Text.Trim();
-                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][5] = drpUserRole.SelectedItem.Text.Trim();
+                filterData1[6] = drpUserRole.SelectedItem.Text.Trim();
+                dtUpdateDB.Rows[dtUpdateDB.Rows.Count - 1][6] = drpUserRole.SelectedItem.Text.Trim();
 
             }
 
@@ -463,6 +463,7 @@ namespace MigrationTool
                             cmd.Connection = con;                            
                             cmd.Parameters.AddWithValue("@FirstName", dt.Rows[i]["FirstName"].ToString());
                             cmd.Parameters.AddWithValue("@LastName", dt.Rows[i]["LastName"].ToString());
+                            cmd.Parameters.AddWithValue("@UserName", dt.Rows[i]["UserName"].ToString());
                             cmd.Parameters.AddWithValue("@Password", dt.Rows[i]["Password"].ToString());
                             cmd.Parameters.AddWithValue("@Email", dt.Rows[i]["Email"].ToString());
                             cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString());
@@ -552,7 +553,7 @@ namespace MigrationTool
             dtDelete.Rows.Add();
             //for (int j = 1; j < gvExcelFile.Rows[0].Cells.Count; j++)
             {
-                dtDelete.Rows[dtDelete.Rows.Count - 1][0] = lblUser.Text;
+                dtDelete.Rows[dtDelete.Rows.Count - 1][3] = lblUser.Text;
             }
             filterData1.Delete();
             ViewState["dtDelete"] = dtDelete;

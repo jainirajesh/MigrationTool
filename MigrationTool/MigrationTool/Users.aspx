@@ -127,10 +127,10 @@
     <ajax:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btnShowPopup" PopupControlID="pnlpopup"
         CancelControlID="btnCancel" BackgroundCssClass="Background">
     </ajax:ModalPopupExtender>
-    <asp:Panel ID="pnlpopup" runat="server" BackColor="White" CssClass="Popup" Height="70%" Width="700px" Style="display: none">
+    <asp:Panel ID="pnlpopup" runat="server" BackColor="White" CssClass="Popup" Height="40%" Width="600px" Style="display: none">
         <table width="100%" style="border: Solid 3px #D55500; width: 100%; height: 100%" cellpadding="2" cellspacing="2">
             <tr style="background-color: #D55500">
-                <td colspan="2" style="height: 5%; color: White; font-weight: bold; font-size: larger" align="center">Server Details</td>
+                <td colspan="2" style="height: 5%; color: White; font-weight: bold; font-size: larger" align="center">User Details</td>
             </tr>
             <tr>
                 <td align="right">User Name:
@@ -150,7 +150,7 @@
                 <td align="right">Last Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtLastname" ReadOnly="true" runat="server" CssClass="textbox2" />
+                    <asp:TextBox ID="txtLastname" runat="server" CssClass="textbox2" />
                 </td>
             </tr>
             <tr>

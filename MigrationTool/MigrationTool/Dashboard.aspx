@@ -542,7 +542,7 @@
             <tr>
                 <td width="1%"></td>
                 <td>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix rounded" style="background-color: coral">
                             <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook">S</i></span>
                             <div class="mini-stat-info">
@@ -552,7 +552,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix bg-facebook rounded">
                             <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook">A</i></span>
                             <div class="mini-stat-info">
@@ -562,7 +562,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix bg-twitter rounded">
                             <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook">S</i></span>
                             <div class="mini-stat-info">
@@ -572,7 +572,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix rounded" style="background-color: coral">
                             <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook">D</i></span>
                             <div class="mini-stat-info">
@@ -582,7 +582,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix bg-facebook rounded">
                             <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter">D</i></span>
                             <div class="mini-stat-info">
@@ -592,7 +592,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 250px;">
+                    <div class="col-md-3 col-sm-6 col-xs-12" style="width: 230px;">
                         <div class="mini-stat clearfix bg-twitter rounded">
                             <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter">N</i></span>
                             <div class="mini-stat-info">
@@ -686,7 +686,7 @@
                                 <SortedDescendingHeaderStyle BackColor="#00547E" />
                             </asp:GridView>
                             <div style="width: 100%; text-align: right;">
-                                <asp:HyperLink ID="lnkHosts" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Hosts.aspx">View all Hosts..</asp:HyperLink>
+                                <asp:HyperLink ID="lnkHosts" runat="server" Font-Size="Small" Font-Italic="true" NavigateUrl="~/Servers.aspx">View all Servers..</asp:HyperLink>
                             </div>
                         </p>
                     </div>
